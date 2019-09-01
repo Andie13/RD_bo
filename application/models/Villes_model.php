@@ -54,5 +54,15 @@ class Villes_model extends CI_Model {
 
         return $this->db->get()->row();
     }
+    
+    public function getVilleByNameAndCp($theVille,$theCp) {
+        
+        $this->db->select() 
+                ->where(self::NOM_COMMUNE , $theVille)
+                ->where(self::CODE_POSTAL,$theCp)
+                        ->from(self::TABLE_VILLES);
+
+        return $this->db->get()->row();
+    }
 
 }

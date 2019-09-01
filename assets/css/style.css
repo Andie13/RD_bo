@@ -31,3 +31,42 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+
+#custom-search-input{
+    height: auto;
+}
+
+.search-form{
+    margin: auto;
+
+}
+
+#search{
+    background-color: rgba(255,255,255,0.7);
+ 
+/*    margin-top: 8em;*/
+    padding: 10px;
+    float: left;
+
+
+}
+
+.inputForm{
+    background-color: rgba(255,255,255,0.7);
+    color: brown;
+    margin-top: 3em;
+}
+.ui-autocomplete {
+    max-height: 200px;
+    max-width: 300px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+    /* add padding to account for vertical scrollbar */
+    padding-right: 20px;
+    background-color: rgba(31, 181, 172, 1.0);  
+    color: white;
+    font-size: 1.2vw;
+    
+} 

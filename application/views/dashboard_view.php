@@ -1,31 +1,31 @@
 <body>
     <!-- START CONTENT -->
-    <section id="main-content">
-        <section class="wrapper main-wrapper" style=''>
+        <section id="main-content">
+            <section class="wrapper main-wrapper" style=''>
 
-            <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <div class="page-title">
+                <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                    <div class="page-title">
 
-                    <div class="pull-left">
-                        <h1 class="title">Soirées Real Dating</h1>                           
+                        <div class="pull-left">
+                            <h1 class="title">Soirées Real Dating</h1>                           
+                        </div>
+
+                        <div class="pull-right hidden-xs">
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="<?php echo base_url(); ?>login_controller/logout"><i class="fa fa-lock"></i>Déconnexion</a>
+                                </li>
+
+                                <li class="active">
+                                    <strong>Toutes les soirées</strong>
+                                </li>
+                            </ol>
+                        </div>
+
                     </div>
-
-                    <div class="pull-right hidden-xs">
-                        <ol class="breadcrumb">
-                            <li>
-                                <a href="<?php echo base_url(); ?>login_controller/logout"><i class="fa fa-lock"></i>Déconnexion</a>
-                            </li>
-
-                            <li class="active">
-                                <strong>Toutes les soirées</strong>
-                            </li>
-                        </ol>
-                    </div>
-
                 </div>
-            </div>
-            <div class="clearfix"></div>
-            <div class="col-lg-12">
+                <div class="clearfix"></div>
+                <div class="col-lg-12">
                 <section class="box ">
                     <header class="panel_header">
                         <h2 class="title pull-left">Toutes mes soirées</h2>
@@ -105,7 +105,7 @@
                             <!-- ********************************************** -->
                             <button  class="btn btn-val btn-icon right15" style="background-color:#99ccff">  
                                 <i class="fa fa-plus " style="color:white"></i>
-                                <a style="color:white" href="nouveau_rdv.php">
+                                <a style="color:white" href="<?php echo base_url()?>Events_controller">
                                     Ajouter une soirée
                                 </a>
                             </button>
