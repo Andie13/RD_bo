@@ -55,9 +55,8 @@ class Login_controller extends CI_Controller {
 
             $this->session->set_userdata($sessionDatas);
 
-           
+
             redirect('Dashboard_controller');
-            
         } else {
 
             $this->session->set_flashdata('err', "identifiant ou mot de passe erroné.");
@@ -125,6 +124,12 @@ class Login_controller extends CI_Controller {
             $am->insert_new_password($email, $md5Pass);
             echo 'Done';
         }
+    }
+
+    public function logout() {
+
+        $_SESSION['is_connected'] = FALSE;
+        redirect('Login_controller', 301);
     }
 
 }

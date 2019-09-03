@@ -65,7 +65,7 @@ class Events_controller extends CI_Controller {
 
         //insertion du vouvel event en DB et récupération de l'id de ce dernier.
         $eventModel = new Events_model();
-       $eventId = $eventModel->insertNewEvent(
+        $eventId = $eventModel->insertNewEvent(
               $nom, $date, $heure, $idVille->id_ville, $nbPlaces, $age, $presta, $prix);
 
         //si l'événement a bien été créé

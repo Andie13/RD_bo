@@ -44,7 +44,7 @@
 
                     <div class="profile-image col-md-4 col-sm-4 col-xs-4">
                         <a href="ui-profile.html">
-                            <img src="assets/images/prof.jpg" class="img-responsive img-circle">
+                            <img src="<?php echo base_url()?>assets/images/prof.jpg" class="img-responsive img-circle">
                         </a>
                     </div>
 
@@ -72,26 +72,26 @@
                         </a>
                     </li>
                     <li class=""> 
-                        <a href="#">
+                        <a href="<?php echo base_url()?>Events_controller">
                             <i class="fa fa-edit"></i>
                             <span class="title">Ajouter une soirée</span>
                         </a>
                     </li>
                     <li class=""> 
-                        <a href="+">
+                        <a href="<?php echo base_url()?>Users_controller">
                             <i class="fa fa-users"></i>
                             <span class="title">Les Utilisateurs</span>
                         </a>
                     </li>
 
                     <li class=""> 
-                        <a href="#">
+                        <a href="<?php echo base_url()?>Presta_controller">
                             <i class="fa fa-glass"></i>
                             <span class="title">Les prestataires</span>
                         </a>
                     </li>
                     <li class=""> 
-                        <a href="db/disconnect.php">
+                        <a href="login_controller/logout">
                             <i class="fa fa-lock"></i>
                             <span class="title">Déconnexion</span>
                         </a>
