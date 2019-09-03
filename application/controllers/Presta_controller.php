@@ -88,7 +88,7 @@ class Presta_controller extends CI_Controller {
         $base_url = 'https://maps.googleapis.com/maps/api/geocode/';
         $format = 'xml'; // 'xml' or 'json'
         $address = 'address=' . urlencode($adresse); // makes the text URL friendly, ie, 350+5th+Avenue+New+York%2C+NY 
-        $url = $base_url . $format . '?' . $address . '&key=AIzaSyD1SXVeFzbltDLAVktP4baPf1CeBSXcjwM'; // Google requires 'sensor=false' parameter 
+        $url = $base_url . $format . '?' . $address . '&key='; // Google requires 'sensor=false' parameter 
 
         $response = file_get_contents($url);
 
