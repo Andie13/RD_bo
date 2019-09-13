@@ -71,7 +71,6 @@
 
         <style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style>
 
-        <link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet" type="text/css">
 
         <script src="<?php echo base_url() ?>assets/tools/plugins/datatables/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url() ?>assets/tools/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js" type="text/javascript"></script>
@@ -90,7 +89,7 @@
         <script src="<?php echo base_url() ?>assets/tools/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url() ?>assets/tools/plugins/datatables/extensions/Responsive/bootstrap/3/dataTables.bootstrap.js" type="text/javascript"></script><!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
 
-        <script src="<?php echo base_url?>assets/tools/plugins/dropzone/dropzone.min.js" type="text/javascript"></script><!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
+        <script src="<?php echo base_url()?>assets/tools/plugins/dropzone/dropzone.min.js" type="text/javascript"></script><!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
 
         <!-- CORE TEMPLATE JS - START --> 
         <script src="<?php echo base_url() ?>assets/tools/js/scripts.js" type="text/javascript"></script> 
@@ -121,5 +120,11 @@
         <link href="<?php echo base_url() ?>assets/tools/plugins/icheck/skins/all.css" rel="stylesheet" type="text/css" media="screen"/>        <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
 
         <link href="<?php echo base_url() ?>assets/tools/plugins/dropzone/css/dropzone.css" rel="stylesheet" type="text/css" media="screen"/>        <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
+
+        
+        
+        
+        
+                <link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet" type="text/css">
 
     </head>

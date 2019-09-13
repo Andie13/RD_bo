@@ -42,7 +42,7 @@ class Events_controller extends CI_Controller {
 
     public function addEvent() {
 
-       
+
         //get input values
         //get input values
         $nom = $this->input->post('nom');
@@ -61,35 +61,35 @@ class Events_controller extends CI_Controller {
         $villeModel = new Villes_model();
         $idVille = $villeModel->getVilleByNameAndCp($theVille, $theCp);
 
-        $date = date('Y-m-d', strtotime($date));   
+        $date = date('Y-m-d', strtotime($date));
 
         //insertion du vouvel event en DB et récupération de l'id de ce dernier.
         $eventModel = new Events_model();
         $eventId = $eventModel->insertNewEvent(
-              $nom, $date, $heure, $idVille->id_ville, $nbPlaces, $age, $presta, $prix);
+                $nom, $date, $heure, $idVille->id_ville, $nbPlaces, $age, $presta, $prix);
 
         //si l'événement a bien été créé
-       if (!$eventModel == FALSE) {      
-           //vérifie qu'un média ai été choisi
-            if ($_FILES['logo']!= null) {
+        if (!$eventModel == FALSE) {
+            //vérifie qu'un média ai été choisi
+            if ($_FILES['logo'] != null) {
 
                 $media = $_FILES['logo'];
                 $idMedia = $this->upload($media);
-                
+
                 $this->addMediaToEvent($eventId, $idMedia);
-              
             }
-       }
+        }
     }
-    
-    public function addMediaToEvent($idEvent,$idMedia){
-        
-        if($idEvent!=null && $idMedia!=null){
-            
+
+    public function addMediaToEvent($idEvent, $idMedia) {
+
+        if ($idEvent != null && $idMedia != null) {
+
             $eventModel = new Events_model();
             $eventModel->addMediaToEvent($idEvent, $idMedia);
+
+            redirect('Dashboard_controller');
         }
-        
     }
 
     public function upload($media) {
@@ -97,7 +97,6 @@ class Events_controller extends CI_Controller {
 
         if (isset($media)) {
 
-            var_dump($media);
 //        //si pas d'erreur
 
             if ($media['error'] == 0) {
@@ -118,15 +117,14 @@ class Events_controller extends CI_Controller {
                 $imagePath = base_url() . 'uploads';
 
                 $mm = new Medias_model();
-                
+
                 $idMedia = $mm->insertMedia($mediaName, $imagePath, $type);
-                
+
                 if (!$idMedia == FALSE) {
-                    
+
                     return $idMedia;
-                    
-                } else {    
-                    
+                } else {
+
                     echo ' error pas d\'id media';
                 }
 
@@ -151,6 +149,127 @@ class Events_controller extends CI_Controller {
         if ($ext == "mp4" || $ext == "avi" || $ext == "mov") {
             $typeMedia = 'video';
             return $typeMedia;
+        }
+    }
+
+    public function displayEventDetails() {
+
+        $eventId = $this->input->get('id');
+        $eventModel = new Events_model();
+        $event = $eventModel->getEventDetailsById($eventId);
+
+        $villeModel = new Villes_model();
+        $ville = $villeModel->getNomVilleFromId($event->id_ville);
+
+
+        switch ($event->id_tranche_age) {
+
+            case 1:
+                $tage = '18 - 25 ans';
+                break;
+            case 2:
+                $tage = '26 - 50 ans';
+                break;
+            case 3:
+                $tage = '50 +';
+                break;
+            case 4:
+                $tage = 'tous';
+                break;
+        }
+        if ($event->image_event != NULL) {
+
+            $mediaModel = new Medias_model();
+            $media = $mediaModel->getMediaById($event->image_event);
+        } else {
+            $media = null;
+        }
+        $prestaModel = new Presta_model();
+        if ($event->id_presta_event != null || $event->id_presta_event != 0) {
+
+            $presta = $prestaModel->getAllPrestaById($event->id_presta_event);
+        } else {
+            $presta = "";
+        }
+
+        //on récupère la liste de tous les prestataires environnants
+        $prestaList = $prestaModel->getAllPrestasByDistance($ville->latitude, $ville->longitude);
+
+        switch ($event->id_statut_event) {
+
+            case 1:
+                $statut = 'Actif';
+                break;
+            case 2:
+                $statut = 'annulé';
+                break;
+            case 3:
+                $statut = 'complet';
+                break;
+            case 5:
+                $statut = 'En ettente de prestataire';
+                break;
+        }
+        $statutsModel = new Statuts_model();
+        $allStatuts = $statutsModel->getAllStatuts();
+
+        $imagePath = base_url() . 'uploads/';
+
+        $comments = $eventModel->getCommentsByEventId($event->id_event);
+
+
+
+
+        $data = array(
+            "nom" => $event->nom_event,
+            "date" => $event->date_event,
+            "heure" => $event->heure_event,
+            "ville" => $ville,
+            "places" => $event->nb_places_event,
+            "age" => $tage,
+            "presta" => $presta,
+            "prix" => $event->prix_event,
+            "media_path" => $imagePath,
+            "media" => $media,
+            "prestasList" => $prestaList,
+            "statut" => $statut,
+            "event" => $event,
+            "statuts" => $allStatuts,
+            "commentaires" => $comments
+        );
+
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar');
+
+        $this->load->view('events/edit_event_view', $data);
+    }
+
+    public function updateMedia() {
+
+        $media = isset($_FILES['media']) ? $_FILES['media'] : '';
+        $idEvent = $this->input->post('id_event');
+
+        if ($media != '') {
+
+
+            $idMedia = $this->upload($media);
+
+
+            $eventModel = new Events_model();
+            $res = $eventModel->addMediaToEvent($idEvent, $idMedia);
+
+
+            if ($res) {
+
+                $this->session->set_flashdata('success', "Bravo! Vous avez changé le média de l'évènement");
+                redirect("Events_controller/displayEventDetails?id=$idEvent");
+            } else {
+
+                $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
+                redirect("Events_controller/displayEventDetails?id=$idEvent");
+            }
+        } else {
+            echo 'media null';
         }
     }
 

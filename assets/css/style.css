@@ -70,3 +70,18 @@ body{
     font-size: 1.2vw;
     
 } 
+
+/**************************************
+               ERROR HANDLING MESSAGES
+**************************************/
+.display_error, .display_success{
+    width: 100%;
+    background: white;
+    
+}
+.display_error p{
+    color:red;
+}
+.display_success p{
+    color: green;
+}

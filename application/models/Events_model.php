@@ -11,15 +11,14 @@ class Events_model extends CI_Model {
     const TABLE_RESA = 'resa';
     const TABLE_TAGE = 'tranches_age';
     const TABLE_PRESTA = 'prestataires';
-    
+    const TABLE_STATUT_EVENT = 'statut_event';
+    const TABLE_COMMENTAIRES_EVENT = 'commentaires_event';
     //concerns user
     const ID_USER = 'id_user';
-    
     //for bookings
     const REF_RESA = 'ref_resa';
     const STATUS_RESA = 'status_resa';
     const DATE_RESA = 'date_resa';
-    
     //events
     const ID_EVENT = 'id_event';
     const DATE_EVENT = 'date_event';
@@ -28,18 +27,21 @@ class Events_model extends CI_Model {
     const IMAGE_EVENT = 'image_event';
     const NOM_EVENT = 'nom_event';
     const PRIX_EVENT = 'prix_event';
-    
+    const ID_STATUT_EVENT = 'id_statut_event';
     //fk to table VILLES
     const ID_VILLE = 'id_ville';
-    
 //    FK to table tranches_age
     const ID_TRANCHE_AGE = 'id_tranche_age';
-    
     //    FK to table prestataires
     const ID_PRESTA_EVENT = 'id_presta_event';
-    
-  
-    
+    //FK id_status
+    conSt ID_STATUT = 'id_statut';
+    conSt COMMENTAIRE = 'commentaire';
+    conSt MODIF = 'modif_statut';
+
+    /*     * ***********************************
+      READ REQUESTS
+     * ************************************ */
 
     public function getEvents($idVille) {
         $this->db->where(self::ID_VILLE, $idVille)
@@ -49,6 +51,7 @@ class Events_model extends CI_Model {
 
         return $data = $this->db->get()->result();
     }
+
     public function getAllEvents() {
         $this->db->select()
                 ->from(self::TABLE_EVENT);
@@ -62,6 +65,94 @@ class Events_model extends CI_Model {
                 ->select()
                 ->from(self::TABLE_EVENT);
         return $this->db->get()->row();
+    }
+
+    public function getEventByUserId($id) {
+
+        $query = $this->db->where(self::ID_USER, $id)
+                ->select()
+                ->from(self::TABLE_RESA);
+
+        $res = $query->get()->result();
+
+        if ($res) {
+            return $res;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function getNbResaByEventId($eventId) {
+
+        $query = $this->db->query("SELECT COUNT(*) AS numrows FROM " . self::TABLE_RESA . "
+               WHERE " . self::ID_EVENT . "='$eventId'");
+
+        if ($query->num_rows() == 0)
+            return '0';
+
+        $row = $query->row();
+        return $row->numrows;
+    }
+
+    //to record a new event we first must display all prestataires in the add event view
+    public function getAllFromPresta() {
+
+
+        $query = $this->db->select()
+                ->from(self::TABLE_PRESTA);
+
+        $res = $query->get()->result();
+
+        if ($res) {
+            return $res;
+        } else {
+            return FALSE;
+        }
+    }
+
+    //to record a new event we first must display all tranches d'âage in the add event view
+    public function getAllFromTAge() {
+
+
+        $query = $this->db->select()
+                ->from(self::TABLE_TAGE);
+
+        $res = $query->get()->result();
+
+        if ($res) {
+            return $res;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function getCommentsByEventId($id) {
+
+        $this->db->where(self::ID_EVENT, $id)
+                ->select()
+                ->from(self::TABLE_COMMENTAIRES_EVENT);
+
+        return $this->db->get()->result();
+    }
+
+    /*     * ************************************
+      INSERT REQUESTS
+     * ************************************ */
+
+    public function insertCommentsToEvent($id, $commentaire) {
+
+        $data = array(
+            self::ID_EVENT => $id,
+            self::COMMENTAIRE => $commentaire
+        );
+
+        $this->db->insert(self::TABLE_COMMENTAIRES_EVENT, $data);
+
+        if ($this->db->affected_rows() > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
     //paypal
@@ -83,8 +174,8 @@ class Events_model extends CI_Model {
         ];
 
         $this->db->insert(self::TABLE_RESA, $data);
-        
-        
+
+
         if ($this->db->affected_rows() > 0) {
             return $this->db->insert_id();
         } else {
@@ -92,71 +183,14 @@ class Events_model extends CI_Model {
         }
     }
 
-    public function getEventByUserId($id) {
+    public function insertNewEvent($nom, $date, $heure, $idVille, $nbPlaces, $idTage, $presta, $prix) {
 
-        $query = $this->db->where(self::ID_USER, $id)
-                ->select()
-                ->from(self::TABLE_RESA);
-
-        $res = $query->get()->result();
-
-        if ($res) {
-            return $res;
+        if ($presta != '') {
+            $status = 1;
         } else {
-            return FALSE;
+            $status = 5;
         }
-    }
-
-    public function getNbResaByEventId($eventId) {
-        
-        $query = $this->db->query("SELECT COUNT(*) AS numrows FROM ".self::TABLE_RESA."
-               WHERE ".self::ID_EVENT."='$eventId'");
-        
-        if ($query->num_rows() == 0)
-            return '0';
-
-        $row = $query->row();
-        return $row->numrows;
-    }
-    
-     //to record a new event we first must display all prestataires in the add event view
-       public function getAllFromPresta() {
-         
-         
-        $query = $this->db->select()
-                ->from(self::TABLE_PRESTA);
-
-        $res = $query->get()->result();
-
-        if ($res) {
-            return $res;
-        } else {
-            return FALSE;
-        }
-         
-     }
-     //to record a new event we first must display all tranches d'âage in the add event view
-     public function getAllFromTAge() {
-         
-         
-        $query = $this->db->select()
-                ->from(self::TABLE_TAGE);
-
-        $res = $query->get()->result();
-
-        if ($res) {
-            return $res;
-        } else {
-            return FALSE;
-        }
-         
-     }
-     
-     public function insertNewEvent($nom,$date,$heure,$idVille,$nbPlaces, $idTage,$presta,$prix) {
-         
-  
-         
-          $data = [
+        $data = [
             self::NOM_EVENT => $nom,
             self::DATE_EVENT => $date,
             self::HEURE_EVENT => $heure,
@@ -165,23 +199,156 @@ class Events_model extends CI_Model {
             self::ID_TRANCHE_AGE => $idTage,
             self::ID_PRESTA_EVENT => $presta,
             self::PRIX_EVENT => $prix,
-            ];
+            self::ID_STATUT_EVENT => $status
+        ];
 
         $this->db->insert(self::TABLE_EVENT, $data);
-       
-            return $insertedId = $this->db->insert_id();
-       
-         
-     }
-     
-     public function addMediaToEvent($idEvent,$idMedia) {
-              // Update
-           
+
+        return $insertedId = $this->db->insert_id();
+    }
+
+    /*     * ************************************
+      UPDATE REQUESTS
+     * ************************************ */
+
+    public function addMediaToEvent($idEvent, $idMedia) {
+        // Update
+
         $idMed = [self::IMAGE_EVENT => $idMedia];
         $this->db->set($idMed);
         $this->db->where(self::ID_EVENT, $idEvent);
         $this->db->update(self::TABLE_EVENT);
-     }
+
+        if ($this->db->affected_rows() > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function updatePlacesPrix($places, $prix, $idEvent) {
 
 
+        $data = array(
+            self::NB_PLACE_EVENT => $places,
+            self::PRIX_EVENT => $prix
+        );
+
+        $this->db->where(self::ID_EVENT, $idEvent)
+                ->update(self::TABLE_EVENT, $data);
+
+        if ($this->db->affected_rows() > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function updateEventStatus($idStatut, $idEvent) {
+
+
+        $data = array(
+            self::ID_STATUT_EVENT => $idStatut,
+        );
+
+        $this->db->set($data)
+                ->where(self::ID_EVENT, $idEvent)
+                ->update(self::TABLE_EVENT);
+
+        if ($this->db->affected_rows() > 0) {
+
+            $this->db->set(self::ID_STATUT, $idStatut)
+                    ->set('modif_statut', date('Y-m-d H:i:s'))
+                    ->set(self::ID_EVENT, $idEvent)
+                    ->insert(self::TABLE_STATUT_EVENT);
+            if ($this->db->affected_rows() > 0) {
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        } else {
+
+            return FALSE;
+        }
+    }
+
+    public function updatePrestaEvent($idEvent, $idPresta) {
+
+        $this->db->set(self::ID_PRESTA_EVENT, $idPresta)
+                ->set(self::ID_STATUT_EVENT, 1)
+                ->where(self::ID_EVENT, $idEvent)
+                ->update(self::TABLE_EVENT);
+        
+        if ($this->db->affected_rows() > 0) {
+            
+            $this->db->set(self::ID_STATUT, 1)
+                    ->set('modif_statut', date('Y-m-d H:i:s'))
+                    ->set(self::ID_EVENT, $idEvent)
+                    ->insert(self::TABLE_STATUT_EVENT);
+            if ($this->db->affected_rows() > 0) {
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        } else {
+            return FALSE;
+        }
+    }
+
+    /*     * ************************************
+      DELETE REQUESTS
+     * ************************************ */
+
+    public function deleteEvent($id) {
+
+        $date = date('Y-m-d');
+        //count resa where id event = id. if More than 0, you can not cancel an event.
+        $nbResa = $this->getNbResaByEventId($id);
+
+
+        if ($nbResa == 0) {
+
+            $this->db->set(self::ID_STATUT, 2)
+                    ->set('modif_statut', date('Y-m-d H:i:s'))
+                    ->set(self::ID_EVENT, $id)
+                    ->insert(self::TABLE_STATUT_EVENT);
+
+            if ($this->db->affected_rows() > 0) {
+
+                $this->db->set(self::ID_STATUT_EVENT, 2)
+                        ->where(self::ID_EVENT, $id)
+                        ->update(self::TABLE_EVENT);
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        } else {
+
+            return FALSE;
+        }
+    }
+
+    public function getLastStatusByEvent($idEvent) {
+
+        $res = $this->db->limit(1)
+                ->select()
+                ->order_by(self::MODIF, 'desc')
+                ->from(self::TABLE_STATUT_EVENT);
+
+        var_dump($res);
+//        if ($res) {
+//            
+//            $this->load->model('Statuts_model','statusModel');
+//            $result = $this->statusModel->getStatusById($res->id_status);
+//            
+//            var_dump($result['statut']);
+//            
+//            
+//             $res->id_status;
+//        } else {
+//            return FALSE;
+//        }
+    }
+
+    //UPDATE
 }

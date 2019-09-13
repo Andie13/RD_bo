@@ -48,7 +48,7 @@ class Villes_model extends CI_Model {
     }
 
     public function getNomVilleFromId($id) {
-        $this->db->select(self::NOM_COMMUNE) 
+        $this->db->select() 
                 ->where(self::ID_VILLE, $id)
                         ->from(self::TABLE_VILLES);
 

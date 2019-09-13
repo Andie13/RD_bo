@@ -32,7 +32,7 @@
     <!-- END TOPBAR -->
     <!-- START CONTAINER -->
     <div class="page-container row-fluid">
-        <h1>Hello</h1>
+    
         <!-- SIDEBAR - START -->
         <div class="page-sidebar ">
 
@@ -68,7 +68,7 @@
                     <li class=""> 
                         <a href="<?php echo base_url()?>Dashboard_controller">
                             <i class="fa fa-calendar"></i>
-                            <span class="title">Nouveau rendez-vous</span>
+                            <span class="title">Toutes les soirées</span>
                         </a>
                     </li>
                     <li class=""> 
@@ -88,6 +88,12 @@
                         <a href="<?php echo base_url()?>Presta_controller">
                             <i class="fa fa-glass"></i>
                             <span class="title">Les prestataires</span>
+                        </a>
+                    </li>
+                    <li class=""> 
+                        <a href="<?php echo base_url()?>Presta_controller/toAddPresta">
+                            <i class="fa fa-edit"></i>
+                            <span class="title">Ajouter un Prestataire</span>
                         </a>
                     </li>
                     <li class=""> 

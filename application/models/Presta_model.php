@@ -29,6 +29,14 @@ class Presta_model extends CI_Model {
 
         return $data = $this->db->get()->result();
     }
+     public function getAllPrestaById($id) {
+         
+        $this->db->where(self::ID_PRESTA, $id)
+                ->select()
+                ->from(self::TABLE_PRESTA);
+
+        return $data = $this->db->get()->row();
+    }
     public function insertPresta($nom,$adresse, $cp, $idVille, $lat, $lng) {
         
        
@@ -69,6 +77,21 @@ class Presta_model extends CI_Model {
             false;
         }
         
+    }
+     public function getAllPrestasByDistance($latitude, $longitude) {
+//         "SELECT *,3956 * 2 * ASIN(SQRT( POWER(SIN(($latitude - latitude) * pi()/180 / 2), 2) + COS($latitude * pi()/180) * COS(latitude * pi()/180) *
+//            POWER(SIN(($longitude - longitude) * pi()/180 / 2), 2) )) as
+//            distance FROM villes
+//            GROUP BY id_ville HAVING distance <= 500 ORDER by distance ASC";
+        //SELECT *, 3956 * 2 * ASIN(SQRT( POWER(SIN((46.216667 - latitude) * pi()/180 / 2), 2) + COS(46.216667 * pi()/180) * COS(latitude * pi()/180) * POWER(SIN((5.6 - longitude) * pi()/180 / 2), 2) )) as distance FROM villes GROUP BY id_ville HAVING distance <= 500 ORDER by distance ASC
+//        $latitude = 43.5178;
+//        $longitude = 5.4626;
+        $distance = "3956 * 2 * ASIN(SQRT( POWER(SIN(($latitude - latitude) * pi()/180 / 2), 2) + COS($latitude * pi()/180) * COS(latitude * pi()/180) *
+            POWER(SIN(($longitude - longitude) * pi()/180 / 2), 2) ))";
+        $query = $this->db->query("SELECT *, $distance as distance FROM prestataires GROUP BY id_presta HAVING distance <= 50 ORDER by distance ASC");
+
+
+        return $query->result();
     }
     
 } 

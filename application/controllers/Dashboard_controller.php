@@ -25,5 +25,23 @@ class Dashboard_controller extends CI_Controller {
             $this->load->view('login/login_view');
         }
     }
+    public function annulerEvent() {
+        
+        $idEvent = $this->input->get('id');
+        
+        $eventModel = new Events_model();
+        $res = $eventModel->deleteEvent($idEvent);
+        
+        if ($res) {
+            
+                        $this->session->set_flashdata('succes', "L'évènement a été correctement annulé");
+                        redirect('Dashboard_controller');
+        }
+        
+        
+        
+        
+        
+    }
 
 }

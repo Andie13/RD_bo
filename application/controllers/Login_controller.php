@@ -60,7 +60,7 @@ class Login_controller extends CI_Controller {
         } else {
 
             $this->session->set_flashdata('err', "identifiant ou mot de passe erroné.");
-            redirect($this->index());
+            redirect('login_controller');
         }
     }
 

@@ -16,7 +16,7 @@ class Medias_model extends CI_Model {
      *       */
 
     //GET MEDIA BY ID
-    public function get_media_by_id($id) {
+    public function getMediaById($id) {
 
        
         $this->db->select()
