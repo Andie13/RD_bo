@@ -15,12 +15,12 @@ class Presta_controller extends CI_Controller {
 
 
         if ($this->session->connected) {
-           
+
 
             $datas['userId'] = $this->session->userId;
             $datas['connected'] = $this->session->connected;
 
-            //récupération des données à afficher dans la vue.
+//récupération des données à afficher dans la vue.
             $prestaModel = new Presta_model();
             $prestss = $prestaModel->getAllPresta();
 
@@ -49,12 +49,14 @@ class Presta_controller extends CI_Controller {
         $rue = $this->input->post('adresse');
         $cp = $this->input->post('cp');
         $ville = $this->input->post('ville');
+        $contact = $this->input->post('contact');
+        $tel = $this->input->post('tel');
 
         $theVille = strtok($ville, '__');
         $idVille = substr($ville, strpos($ville, '__') + 2);
 
 
-        //prepare to get lat lng from a place
+//prepare to get lat lng from a place
         $adresse = $rue . ', ' . $cp . ', ' . $theVille;
 
         $coords = $this->getLatLongFromAdresse($adresse);
@@ -63,9 +65,9 @@ class Presta_controller extends CI_Controller {
         $lng = $coords['longitude'];
 
         $prestaModel = new Presta_model();
-        $idPresta = $prestaModel->insertPresta($nom, $adresse, $cp, $idVille, $lat, $lng);
+        $idPresta = $prestaModel->insertPresta($nom, $adresse, $cp, $idVille, $lat, $lng, $contact, $tel);
 
-        //TEST ID_presta = 8
+//TEST ID_presta = 8
         if ($idPresta != FALSE) {
             $resps = $this->uploadImage($_FILES['files']);
 
@@ -138,7 +140,6 @@ class Presta_controller extends CI_Controller {
                         echo ' error pas d\'id media';
                     }
                 }
-                
             }
         }
         return $data;
@@ -162,5 +163,98 @@ class Presta_controller extends CI_Controller {
     }
 
 //    TODO request for a new api key for dev environment.
-    //  API KEY to access geocodes google AIzaSyD1SXVeFzbltDLAVktP4baPf1CeBSXcjwM
+//  API KEY to access geocodes google AIzaSyD1SXVeFzbltDLAVktP4baPf1CeBSXcjwM`
+
+    public function toEditPresta() {
+
+        $idPresta = $this->input->get('id_presta');
+
+        $this->load->view('layout/header');
+
+
+        if ($this->session->connected) {
+
+
+//récupération des données à afficher dans la vue.
+            $prestaModel = new Presta_model();
+            $presta = $prestaModel->getAllPrestaById($idPresta);
+
+            if ($presta != null) {
+
+                $villeModel = new Villes_model();
+                $ville = $villeModel->getNomVilleFromId($presta->id_ville_presta);
+
+                $mediaModel = new Medias_model();
+                $mediasPresta = $mediaModel->getAllMediaFromPresta($idPresta);
+
+                $comments = $prestaModel->getAllCommentsByIdPresta($idPresta);
+
+                if ($mediasPresta != FALSE) {
+                    $datas['mediasPresta'] = $mediasPresta;
+                } else {
+                    $datas['mediasPresta'] = '';
+                }
+
+                if ($comments != null) {
+                    $datas['comments'] = $comments;
+                } else {
+                    $datas['comments'] = "";
+                }
+
+
+                $datas['presta'] = $presta;
+                $datas['ville'] = $ville;
+
+                $this->load->view('layout/sidebar');
+                $this->load->view('presta/edit_presta_view', $datas);
+            } else {
+                $this->load->view('login/login_view');
+            }
+        }
+    }
+
+    public function updateDetails() {
+
+
+        $idPresta = $this->input->post('id_presta');
+        $contact = $this->input->post('contact');
+        $tel = $this->input->post('tel_contact');
+
+
+
+        $prestaModel = new Presta_model();
+        $res = $prestaModel->updateContactPresta($idPresta, $contact, $tel);
+
+
+        if ($res) {
+
+            $this->session->set_flashdata('success', "Vous avez changé le contact de ce prestataire.");
+            redirect("Presta_controller/toEditPresta?id_presta=$idPresta");
+        } else {
+
+            $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
+            redirect("Presta_controller/toEditPresta?id_presta=$idPresta");
+        }
+    }
+
+    public function addCommentToPresta() {
+
+        $idPresta = $this->input->post('id_presta');
+        $comment = $this->input->post('comment');
+        
+         $prestaModel = new Presta_model();
+         $res = $prestaModel->addCommentToPresta($idPresta, $comment);
+         
+         if ($res) {
+
+            $this->session->set_flashdata('success', "Le commentaire à bien été rajouté.");
+            redirect("Presta_controller/toEditPresta?id_presta=$idPresta");
+        } else {
+
+            $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
+            redirect("Presta_controller/toEditPresta?id_presta=$idPresta");
+        }
+        
+    }
+
 }

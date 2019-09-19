@@ -40,17 +40,20 @@ class Login_controller extends CI_Controller {
         $res = $am->get_admin($email, $md5pass);
 
 
-
         if (sizeof($res) == 1) {
+            
+          
+            
 
             //set session
 
 
             $sessionDatas = array(
-                'first_name' => $res->firstname_admin,
-                'last_name' => $res->lastname_admin,
+                
+                'first_name' => $res->prenom_user,
+                'last_name' => $res->nom_user,
                 'connected' => TRUE,
-                'id_admin' => $res->id_admin
+                'permission' => $res->id_perm_user
             );
 
             $this->session->set_userdata($sessionDatas);

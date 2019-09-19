@@ -65,6 +65,9 @@
                                 if ($prestas > 0) {
                                     foreach ($prestas as $row) {
 
+                                        $villeModel = new Villes_model();
+                                        $ville = $villeModel->getNomVilleFromId($row->id_ville_presta);
+
 
 
                                         echo '<tr>';
@@ -75,14 +78,14 @@
                                         echo $row->adresse_presta;
                                         echo '</td>';
                                         echo '<td>';
-                                        echo 'Aix';
+                                        echo $ville->nom_commune;
                                         echo '</td>';
                                         echo '<td>';
                                         echo $row->cp_presta;
                                         echo '</td>';
 
                                         echo '<td>';
-                                        echo '<p><a>Visualiser</a></p>';
+                                        echo '<p><a  href="'. base_url().'Presta_controller/toEditPresta?id_presta=' . $row->id_presta . '">Visualiser</a></p>';
 
 
                                         echo '</td>';

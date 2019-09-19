@@ -34,69 +34,87 @@
 
                     <div class="content-body">   
                         <div class="row">
+                            <div id="example-1_wrapper" class="dataTables_wrapper form-inline">
 
-                            <table id="example" class="table table-striped dt-responsive display" cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
+                                <table id="example-1" class="table table-striped dt-responsive display dataTable dtr-inline" cellspacing="0" width="100%" role="grid" aria-describedby="example-1_info" style="width: 100%;">
+                                    <thead>
+                                        <tr>
 
-                                        <th>Nom</th>
-                                        <th>Prénom</th>
-                                        <th>Genre</th>
-                                        <th>tranche d'âge</th>                                          
-                                        <th>nombre résas</th>
-                                        <th>Action</th>
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                            <th>Genre</th>
+                                            <th>Âge</th>                                          
+                                            <th>nombre résas</th>
+                                            <th>Action</th>
 
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
 
-                                        <th>Nom</th>
-                                        <th>Prénom</th>
-                                        <th>Genre</th>
-                                        <th>tranche d'âge</th>                                          
-                                        <th>Nombre résa</th>
-                                        <th>Action</th>
-
-
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <?php
-                                    if ($users > 0) {
-                                        foreach ($users as $row) {
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                            <th>Genre</th>
+                                            <th>Âge</th>                                          
+                                            <th>Nombre résa</th>
+                                            <th>Action</th>
 
 
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <?php
+                                        if ($users > 0) {
+                                            foreach ($users as $row) {
 
-                                            echo '<tr>';
-                                            echo '<td>';
-                                            echo $row->nom_user;
-                                            echo '</td>';
-                                            echo '<td>';
-                                            echo $row->prenom_user;
-                                            echo '</td>';
-                                            echo '<td>';
-                                            echo 'homme';
-                                            echo '</td>';
-                                            echo '<td>';
-                                            echo '18';
-                                            echo '</td>';
-                                            echo '<td>';
-                                            echo '25';
-                                            echo '</td>';
+                                                $age = (time() - strtotime($row->anniv_user)) / 3600 / 24 / 365;
 
-                                            echo '<td>';
-                                            echo '<p><a>Visualiser</a></p>';
+                                                if ($row->genre_user == 1) {
+                                                    $genre = "Femme";
+                                                } else {
+                                                    $genre = "Homme";
+                                                }
 
-                                            echo '</td>';
-                                            echo '</tr>';
+                                                $userModel = new Users_model();
+                                                $resas = $userModel->getResasByUserId($row->id_user);
+
+
+
+                                                echo '<tr>';
+                                                echo '<td>';
+                                                echo $row->nom_user;
+                                                echo '</td>';
+                                                echo '<td>';
+                                                echo $row->prenom_user;
+                                                echo '</td>';
+                                                echo '<td>';
+                                                echo $genre;
+                                                echo '</td>';
+                                                echo '<td>';
+                                                echo (int) $age;
+                                                echo '</td>';
+                                                echo '<td>';
+                                                echo count($resas);
+                                                echo '</td>';
+
+                                                echo '<td>';
+                                                echo '<p><a href="' . base_url() . 'Users_controller/toEditUser?id_user=' . $row->id_user . '">Visualiser</a></p>';
+
+                                                echo '</td>';
+                                                echo '</tr>';
+                                            }
                                         }
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                            <!-- ********************************************** -->
-
+                                        ?>
+                                    </tbody>
+                                </table>
+                                <!-- ********************************************** -->
+                                <button  class="btn btn-val btn-icon right15" style="background-color:#99ccff">  
+                                    <i class="fa fa-plus " style="color:white"></i>
+                                    <a style="color:white" href="<?php echo base_url() ?>Users_controller/toAddUser">
+                                        Ajouter un utilisateur
+                                    </a>
+                                </button>
+                            </div>
                         </div>
                     </div>
             </div>
@@ -109,6 +127,7 @@
 
     </section>
     <script>
+
 
     </script>
 

@@ -3,12 +3,14 @@
 class Medias_model extends CI_Model {
 
     const TABLE = 'medias';
+        const TABLE_MEDIAS_PRESTA = 'medias_presta';
   
     const ID = 'id_media';
     
     const NAME = 'nom_media';
     const PATH = 'path_media';
     const TYPE = 'type_media';
+    
    
 
     /*
@@ -26,14 +28,21 @@ class Medias_model extends CI_Model {
         return $this->db->get()->row();
     }
 
-    public function get_media_by_Store_id($id) {
-
-
-        $this->db->select();
-        $this->db->from(self::TABLE);
-        $this->db->where(self::ID_STORE_MED, $id);
-
-        return $this->db->get()->result_array();
+      public function getAllMediaFromPresta($idPresta) {
+        
+        $query = $this->db->select()
+                ->from(self::TABLE)                
+                ->join(self::TABLE_MEDIAS_PRESTA,'medias_presta.id_media = medias.id_media')
+                ->where("medias_presta.id_presta = $idPresta");
+        
+        $medias = $query->get()->result();
+        
+        if($medias != null){
+            return $medias;
+        }else{
+            return false;
+        }
+        
     }
 
     /*
@@ -62,20 +71,8 @@ class Medias_model extends CI_Model {
      *       */
 
     //DELETE MEDIA 
-    public function delete_media($id) {
-        $this->db->where(self::ID, $id);
-        $this->db->delete(self::TABLE);
-        if($this->db->affected_rows()>0){
-            return TRUE;
-        }else{
-            return FALSE;
-        }
-    }
 
-    //DELETE ALL MEDIA FROM 1 STORE
-    public function delete_media_from_store_id($store_id) {
-        $this->db->where(self::ID_STORE_MED, $store_id);
-        $this->db->delete(self::TABLE);
-    }
+
+
 
 }

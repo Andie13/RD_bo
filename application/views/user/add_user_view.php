@@ -34,42 +34,20 @@
                 <div class="content-body">   
                     <div class="row">
                         <div class="col-md-8 col-sm-9 col-xs-10">
-                            <form action="<?php echo base_url();?>Presta_controller/addPresta" method="POST" enctype="multipart/form-data">
+                            <form action="<?php echo base_url(); ?>Users_controller/addUser" method="POST" enctype="multipart/form-data">
+                                
                                 <div class="form-group">
-                                    <label class="form-label" for="field-1">Name</label>
-                                    <span class="desc">e.g. "Café de la renaissance"</span>
+                                    <label class="form-label" for="field-1">Nom</label>
+                                    <span class="desc">e.g. "Dupont"</span>
                                     <div class="controls">
                                         <input type="text" name="nom" class="form-control" id="field-1" required >
                                     </div>
                                 </div>
-
                                 <div class="form-group">
-                                    <label class="form-label" for="field-1">Adresse</label>
-                                    <span class="desc">e.g. "rue jaune"</span>
+                                    <label class="form-label" for="field-1">Prénom</label>
+                                    <span class="desc">e.g. "Martin"</span>
                                     <div class="controls">
-                                        <input type="tel" name="adresse" class="form-control" id="field-1" placeholder="30" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="field-1">Ville</label>
-                                    <span class="desc">e.g. "Aix-en-Provence"</span>
-                                    <div class="controls custom-search-input">
-                                        <input id="search" name="ville" type="text" class="autocomplete_input form-control" placeholder="ville" required/>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="form-label" for="field-1">CP</label>
-                                    <span class="desc">e.g. "13100"</span>
-                                    <div class="controls">
-                                        <input type="text" name="cp" class="form-control" id="field-1" placeholder="13100" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="field-1">Contact</label>
-                                    <span class="desc">e.g. "Café de la renaissance"</span>
-                                    <div class="controls">
-                                        <input type="text" name="contact" class="form-control" id="field-1" required >
+                                        <input type="text" name="prenom" class="form-control" id="field-1" required >
                                     </div>
                                 </div>
                                 
@@ -81,19 +59,32 @@
                                                pattern="([0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2})|([0-9]{10})" placeholder="Votre tel..." >
                                     </div>
                                 </div>
-                                
-
+                           
                                 <div class="form-group">
-                                    <label class="form-label" for="field-1">Image</label>
-                                    <span class="desc">e.g. "Images de l'évènement"</span>
+                                    <label class="form-label" for="field-1">email</label>
+                                    <span class="desc">e.g. "e@e.com"</span>
                                     <div class="controls">
-                                        <label for="file"><span>Nom du fichier:</span></label>
-                                        <br>
-                                        <br>
-                                        <input type="file" name="files[]" id="file" multiple/>                                       
+                                        <input type="email" name="email" class="form-control" id="field-1" placeholder="13100" required>
                                     </div>
                                 </div>
+                                <!--                                mot de passe sera généré aléatoirement-->
 
+                                <div class="form-group">
+                                    <label class="form-label" for="field-1">Rôle de l'utilisateur</label>
+                                    <span class="desc">e.g. "Ambassadeur ou Administrateur"</span>
+                                    <div class="controls">
+
+
+                                        <select name="role">
+
+                                            <?php
+                                            foreach ($perms as $p) {
+                                                echo '<option value="' . $p->id_perm . '">' . $p->permission . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12 padding-bottom-30">
                                     <div class="text-left">
                                         <button type="submit" class="btn btn-icon btn-val btn-success">
@@ -120,9 +111,10 @@
                 </div>
         </div>
     </section>
-</div>
+
+
 </section>
-</section>
+
 <script>
     var BASE_URL = "<?php echo base_url(); ?>";
 
@@ -157,3 +149,19 @@
 
 
 </script>   
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.datepick').datepicker({dateFormat: "dd-mm-yy",
+            showButtonPanel: true,
+            changeMonth: true,
+            changeYear: true,
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            yearRange: "1930:2010"
+        });
+
+        $('#btnInfo').click(function () {
+            alert("Les formats requis sont: " + '\n' + '00-00-00-00-00 ou ' + '\n' + '0000000000');
+        })
+    });
+</script>

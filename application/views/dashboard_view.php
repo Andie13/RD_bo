@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="page-title">
 
                     <div class="pull-left">
-                        <h1 class="title">Soirées Real Dating</h1>                           
+                        <h1 class="title">Soirées Real Date</h1>                           
                     </div>
 
                     <div class="pull-right hidden-xs">
