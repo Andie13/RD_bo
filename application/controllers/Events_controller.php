@@ -6,6 +6,7 @@ class Events_controller extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        
     }
 
     public function index() {
@@ -18,6 +19,7 @@ class Events_controller extends CI_Controller {
 
             $datas['userId'] = $this->session->userId;
             $datas['connected'] = $this->session->connected;
+            
 
             //récupération des données à afficher dans la vue.
             $eventModel = new Events_model();
@@ -62,11 +64,18 @@ class Events_controller extends CI_Controller {
         $idVille = $villeModel->getVilleByNameAndCp($theVille, $theCp);
 
         $date = date('Y-m-d', strtotime($date));
+        
+        $idUser = $this->session->id_user;
+        if($this->session->permission == 2){
+            $isAmbassador = TRUE;
+        }else{
+            $isAmbassador = FALSE;
+        }
 
         //insertion du vouvel event en DB et récupération de l'id de ce dernier.
         $eventModel = new Events_model();
         $eventId = $eventModel->insertNewEvent(
-                $nom, $date, $heure, $idVille->id_ville, $nbPlaces, $age, $presta, $prix);
+               $nom, $date, $heure, $idVille->id_ville, $nbPlaces, $age, $presta, $prix,$idUser,$isAmbassador );
 
         //si l'événement a bien été créé
         if (!$eventModel == FALSE) {
@@ -75,8 +84,14 @@ class Events_controller extends CI_Controller {
 
                 $media = $_FILES['logo'];
                 $idMedia = $this->upload($media);
+                
+                if ($idMedia != NULL){
+                     $this->addMediaToEvent($eventId, $idMedia);
+                }else{
+                     redirect('Dashboard_controller');
+                }
 
-                $this->addMediaToEvent($eventId, $idMedia);
+               
             }
         }
     }
@@ -132,7 +147,7 @@ class Events_controller extends CI_Controller {
 //             
             } else {
 
-                echo ' error';
+               return;
             }
         }
     }

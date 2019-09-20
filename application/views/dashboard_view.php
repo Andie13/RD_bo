@@ -33,6 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <header class="panel_header">
                         <h2 class="title pull-left">Toutes mes soirées</h2>
                         <?php
+                      
                         if ($this->session->flashdata('success')) {
                             ?>
                             <div class = "alert alert-success">
@@ -76,8 +77,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     $villeModel = new Villes_model();
                                     $statusModel = new Statuts_model();
 
-                                    $rows = $eventModel->getAllEvents();
-
                                     if ($rows > 0) {
                                         foreach ($rows as $row) {
 
@@ -109,6 +108,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             echo '</td>';
                                             echo '</tr>';
                                         }
+                                    }else{
+                                        echo 'Vous n\'avez pas encore de soirée attribuée.';
                                     }
                                     ?>
                                 </tbody>

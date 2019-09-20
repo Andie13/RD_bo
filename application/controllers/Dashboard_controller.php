@@ -13,9 +13,27 @@ class Dashboard_controller extends CI_Controller {
         if ($this->session->connected) {
 
 
-            $datas['userId'] = $this->session->userId;
+            $datas['userId'] = $this->session->id_user;
             $datas['connected'] = $this->session->connected;
+            
+            $eventModel = new Events_model();
+            
+            
+           
+            if($this->session->permission == 2){
+              
+                
+                 $datas['rows'] = $eventModel->getAllEventFromAmbId($this->session->id_user);
+               
+                
+                
+            }else{
+                
+                $datas['rows'] = $eventModel->getAllEvents();
+             }
 
+            
+            
             $this->load->view('layout/header');
 
             $this->load->view('layout/sidebar');
@@ -23,13 +41,18 @@ class Dashboard_controller extends CI_Controller {
         } else {
             $this->load->view('layout/header');
             $this->load->view('login/login_view');
-        }
+       }
     }
     public function annulerEvent() {
         
         $idEvent = $this->input->get('id');
+        $userId = $this->session->id_user;
+        
         
         $eventModel = new Events_model();
+          
+        
+        
         $res = $eventModel->deleteEvent($idEvent);
         
         if ($res) {

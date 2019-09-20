@@ -118,7 +118,19 @@ class Users_model extends CI_Model {
             false;
         }
     }
-   
+       public function checkIfUserEvists($email) {
+        $query = $this->db->select('count(id_user) as find')
+                ->from(self::TABLE_USERS)
+                ->where(self::EMAIL_USER, $email);
+
+        $result = $query->get()->row();
+
+        if ($result != null && isset($result->find) && $result->find > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
     
     
     

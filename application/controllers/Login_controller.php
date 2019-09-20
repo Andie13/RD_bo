@@ -38,9 +38,9 @@ class Login_controller extends CI_Controller {
         $am = new Admin_model();
 
         $res = $am->get_admin($email, $md5pass);
+   
 
-
-        if (sizeof($res) == 1) {
+        if (!$res == FALSE) {
             
           
             
@@ -49,7 +49,7 @@ class Login_controller extends CI_Controller {
 
 
             $sessionDatas = array(
-                
+                'id_user' => $res->id_user,
                 'first_name' => $res->prenom_user,
                 'last_name' => $res->nom_user,
                 'connected' => TRUE,
@@ -62,7 +62,7 @@ class Login_controller extends CI_Controller {
             redirect('Dashboard_controller');
         } else {
 
-            $this->session->set_flashdata('err', "identifiant ou mot de passe erroné.");
+            $this->session->set_flashdata('err', "accès refusé.");
             redirect('login_controller');
         }
     }
