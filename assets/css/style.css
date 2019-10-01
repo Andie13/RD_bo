@@ -44,8 +44,8 @@ body{
 
 #search{
     background-color: rgba(255,255,255,0.7);
- 
-/*    margin-top: 8em;*/
+
+    /*    margin-top: 8em;*/
     padding: 10px;
     float: left;
 
@@ -68,7 +68,7 @@ body{
     background-color: rgba(31, 181, 172, 1.0);  
     color: white;
     font-size: 1.2vw;
-    
+
 } 
 
 /**************************************
@@ -77,11 +77,22 @@ body{
 .display_error, .display_success{
     width: 100%;
     background: white;
-    
+
 }
 .display_error p{
     color:red;
 }
 .display_success p{
     color: green;
+}
+
+
+.scrollCheckbox{
+    border:2px solid #ccc;
+    width:300px;
+    height: 75px; 
+    overflow-y: scroll;
+    background-color: rgba(31, 181, 172, 1.0);  
+    color: white;
+
 }

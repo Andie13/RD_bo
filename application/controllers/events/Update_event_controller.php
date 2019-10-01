@@ -10,7 +10,6 @@ class Update_event_controller extends CI_Controller {
 
     public function index() {
         echo 'hello';
-        
     }
 
     public function changeEventPriceNBPlaces() {
@@ -29,18 +28,19 @@ class Update_event_controller extends CI_Controller {
         } else {
 
             $this->session->set_flashdata('err', "Vos informations n'ont pas été mises à jour.");
-             redirect("Events_controller/displayEventDetails?id=$eventId");
+            redirect("Events_controller/displayEventDetails?id=$eventId");
         }
     }
+
     public function changeEventStatus() {
-        
+
         $idEvent = $this->input->post('id_event');
         $idStatut = $this->input->post('statut');
-       
-        
+
+
         $eventModel = new Events_model();
         $res = $eventModel->updateEventStatus($idStatut, $idEvent);
-        
+
         if ($res) {
 
             $this->session->set_flashdata('success', "Le statut de l'évènement à bien été mis à jour.");
@@ -48,18 +48,18 @@ class Update_event_controller extends CI_Controller {
         } else {
 
             $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
-             redirect("Events_controller/displayEventDetails?id=$idEvent");
+            redirect("Events_controller/displayEventDetails?id=$idEvent");
         }
     }
-    
+
     public function changePrestaEvent() {
-        
+
         $idEvent = $this->input->post('id_event');
         $idPresta = $this->input->post('presta');
-       
+
         $eventModel = new Events_model();
         $res = $eventModel->updatePrestaEvent($idEvent, $idPresta);
-        
+
         if ($res) {
 
             $this->session->set_flashdata('success', "<le prestataire a bien été mis à jour.");
@@ -67,18 +67,18 @@ class Update_event_controller extends CI_Controller {
         } else {
 
             $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
-             redirect("Events_controller/displayEventDetails?id=$idEvent");
+            redirect("Events_controller/displayEventDetails?id=$idEvent");
         }
-
     }
+
     public function addComment() {
-        
+
         $idEvent = $this->input->post('id_event');
         $comment = $this->input->post('comment');
-       
+
         $eventModel = new Events_model();
-       $res = $eventModel->insertCommentsToEvent($idEvent, $comment);
-        
+        $res = $eventModel->insertCommentsToEvent($idEvent, $comment);
+
         if ($res) {
 
             $this->session->set_flashdata('success', "le commentaire  a bien été ajouté");
@@ -86,13 +86,43 @@ class Update_event_controller extends CI_Controller {
         } else {
 
             $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
-             redirect("Events_controller/displayEventDetails?id=$idEvent");
+            redirect("Events_controller/displayEventDetails?id=$idEvent");
         }
-
     }
-    
-    
-    
-     
+
+    public function updateAmbassadeurToEvent() {
+
+        $idEvent = $this->input->post('id_event');
+        $ambassadeurs = $this->input->post('amb');
+        
+   
+
+        $eventModel = new Events_model();
+
+
+
+
+        foreach ($ambassadeurs as $ai) {
+            if ($ai > 0) {
+                
+             
+//
+//                //on retire tous les ambassadeurs préalablement choisis.
+               $eventModel->deleteAmbFromEvent($idEvent);
+
+               $res = $eventModel->AddAmbassyToEvent($ai, $idEvent);
+            
+                if($res) {
+
+                    $this->session->set_flashdata('success', "Les Ambassadeurs ont été modifiés avec succès");
+                    redirect("Events_controller/displayEventDetails?id=$idEvent");
+                } else {
+
+                    $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
+                    redirect("Events_controller/displayEventDetails?id=$idEvent");
+                }
+           }
+        }
+    }
 
 }

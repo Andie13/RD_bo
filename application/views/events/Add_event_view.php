@@ -94,14 +94,14 @@
                                         <div class="controls">
                                             <select class="form-control input-lg m-bot15" name="presta">
                                                 <option> à définir plus tard </option>
-<?php
-if (isset($prestas)) {
+                                                <?php
+                                                if (isset($prestas)) {
 
-    foreach ($prestas as $presta) {
-        echo ' <option value="' . $presta->id_presta . '">' . $presta->nom_presta . ' - '.$presta->cp_presta.'</option>';
-    }
-};
-?>
+                                                    foreach ($prestas as $presta) {
+                                                        echo ' <option value="' . $presta->id_presta . '">' . $presta->nom_presta . ' - ' . $presta->cp_presta . '</option>';
+                                                    }
+                                                };
+                                                ?>
 
                                             </select>
                                         </div>
@@ -123,6 +123,25 @@ if (isset($prestas)) {
                                             <input type="number" name="prix" class="form-control" id="field-1" placeholder="30" required>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="field-1">Ambassadeurs</label>
+                                        <span class="desc">e.g. "10"</span>
+                                        <div class="scrollCheckbox">
+                                         
+                                            <input name="amb[]" type="checkbox" value="0" checked >à définir plus tard <br>
+                                                <?php
+                                                                                           
+                                                if ($amb != '') {
+
+                                                    foreach ($amb as $a) {
+                                                        echo'<input name="amb[]" type="checkbox" value="' . $a->id_user . '">' . $a->prenom_user . ' ' . $a->nom_user . '<br>';
+                                                    }
+                                                }
+                                                ?>
+
+                                        </div>
+                                    </div>
+
                                     <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12 padding-bottom-30">
                                         <div class="text-left">
                                             <button type="submit" class="btn btn-icon btn-val btn-success">

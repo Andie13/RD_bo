@@ -89,7 +89,7 @@
         <script src="<?php echo base_url() ?>assets/tools/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url() ?>assets/tools/plugins/datatables/extensions/Responsive/bootstrap/3/dataTables.bootstrap.js" type="text/javascript"></script><!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
 
-        <script src="<?php echo base_url()?>assets/tools/plugins/dropzone/dropzone.min.js" type="text/javascript"></script><!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
+        <script src="<?php echo base_url() ?>assets/tools/plugins/dropzone/dropzone.min.js" type="text/javascript"></script><!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
 
         <!-- CORE TEMPLATE JS - START --> 
         <script src="<?php echo base_url() ?>assets/tools/js/scripts.js" type="text/javascript"></script> 
@@ -121,10 +121,10 @@
 
         <link href="<?php echo base_url() ?>assets/tools/plugins/dropzone/css/dropzone.css" rel="stylesheet" type="text/css" media="screen"/>        <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
 
-        
-        
-        
-        
-                <link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet" type="text/css">
+
+
+
+
+        <link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet" type="text/css">
 
     </head>

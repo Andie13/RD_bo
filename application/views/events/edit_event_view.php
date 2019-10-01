@@ -59,6 +59,11 @@ if (isset($userId)) {
                         </a>
                     </li>
                     <li>
+                        <a href="#amb" data-toggle="tab">
+                            <i class="fa fa-user"></i>Amabassadeurs
+                        </a>
+                    </li>
+                    <li>
                         <a href="#comments" data-toggle="tab">
                             <i class="fa fa-pencil"></i>Commentaires
                         </a>
@@ -107,6 +112,7 @@ if (isset($userId)) {
                             </div>
 
                             <?php
+     
                             if ($presta != "") {
 
                                 echo '<h2> Lieux: ' . $presta->nom_presta . '</h2><br>';
@@ -115,6 +121,18 @@ if (isset($userId)) {
                             }
                             echo '<br>';
                             echo '<br>';
+                            
+                            
+                            if($amb !=''){
+                                 echo 'Les ambassadeurs sont : ';
+                                foreach($amb as $a){
+                                   
+                                    echo '<h2>'.$a->nom_user.' '. $a->prenom_user.'</h2>';
+                                }
+                            }else{
+                                echo 'Il n\'y a pas encore d\'ambassadeur désigné pour animer la soirée.<br>';
+                            }
+                            
                             if (!$commentaires == null) {
                                 echo '<h2>Liste des commentaires postés pour cet événement:</h2';
 
@@ -126,6 +144,8 @@ if (isset($userId)) {
                             } else {
                                 echo 'Aucun commentaire enregistré à ce jour.';
                             }
+                            
+                            
                             ?>
 
                         </div>
@@ -223,6 +243,55 @@ if (isset($userId)) {
                         </div>
                     </div>
                 </div>
+                <div class="tab-pane fade in" id="amb">
+                    <h2>Changer d'ambassadeur(s)</h2>
+                    <div class="form-group">
+                        <?php
+                        if ($amb != "") {
+
+                            echo '<h2>Actuellement: </h2><br>';
+                            foreach ($amb as $a) {
+                                echo $a->nom_user.', <br>';
+                              
+                            }
+                        }  echo '<hr>';
+                        ?>
+                        <form method="POST" action="<?php echo base_url(); ?>events/update_event_controller/updateAmbassadeurToEvent">
+                            <label class="form-label" for="field-5">Ajoutez ou modifiez les ambassadeurs: </label>
+                            <span class="desc"></span>
+                            <br>
+                            <input style="visibility: hidden" name="id_event" value="<?php echo $event->id_event; ?>">
+                             <div class="form-group">
+                                        <label class="form-label" for="field-1">Ambassadeurs</label>
+                                        <span class="desc">e.g. "10"</span>
+                                        <div class="scrollCheckbox">
+                                         
+                                            <input name="amb[]" type="checkbox" value="0" checked >à définir plus tard <br>
+                                                <?php
+                                                                                           
+                                                if ($ambass != '') {
+
+                                                    foreach ($ambass as $a) {
+                                                        echo'<input name="amb[]" type="checkbox" value="' . $a->id_user . '">' . $a->prenom_user . ' ' . $a->nom_user . '<br>';
+                                                    }
+                                                }
+                                                ?>
+
+                                        </div>
+                                    </div>
+                 
+
+
+                            <button type="submit" class="btn btn-primary btn-icon right15 btn-val">
+                                <i class="fa a fa-plus-square-o" style="color:white"></i>
+                                <a style="color:white">
+                                    Sauvegarder
+                                </a>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
                 <div class="tab-pane fade in" id="presta">
                     <h2>Changer de prestataire</h2>
                     <div class="form-group">
@@ -268,13 +337,13 @@ if (isset($userId)) {
                                 </textarea>
                             </div>
                         </div>
-                  
-                    <button type="submit" class="btn btn-primary btn-icon right15 btn-val">
-                        <i class="fa a fa-plus-square-o" style="color:white"></i>
-                        <a style="color:white">
-                            Sauvegarder
-                        </a>
-                    </button> 
+
+                        <button type="submit" class="btn btn-primary btn-icon right15 btn-val">
+                            <i class="fa a fa-plus-square-o" style="color:white"></i>
+                            <a style="color:white">
+                                Sauvegarder
+                            </a>
+                        </button> 
                     </form>
                 </div>
 

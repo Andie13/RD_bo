@@ -6,7 +6,6 @@ class Events_controller extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        
     }
 
     public function index() {
@@ -19,7 +18,7 @@ class Events_controller extends CI_Controller {
 
             $datas['userId'] = $this->session->userId;
             $datas['connected'] = $this->session->connected;
-            
+
 
             //récupération des données à afficher dans la vue.
             $eventModel = new Events_model();
@@ -33,6 +32,18 @@ class Events_controller extends CI_Controller {
             if (!$presta === FALSE) {
                 $datas['prestas'] = $presta;
             }
+
+            $userModel = new Users_model();
+            $ambassadeurs = $userModel->getAmbassadeurs();
+
+            if ($ambassadeurs != null) {
+
+                $datas['amb'] = $ambassadeurs;
+            } else {
+                $datas['amb'] = '';
+            }
+
+
 
             $this->load->view('layout/sidebar');
 
@@ -55,6 +66,9 @@ class Events_controller extends CI_Controller {
         $age = $this->input->post('age');
         $presta = $this->input->post('presta');
         $prix = $this->input->post('prix');
+        $ambassadeursID = $this->input->post('amb');
+
+
 
 
         //récupération de l'id de la ville
@@ -64,34 +78,50 @@ class Events_controller extends CI_Controller {
         $idVille = $villeModel->getVilleByNameAndCp($theVille, $theCp);
 
         $date = date('Y-m-d', strtotime($date));
-        
+
         $idUser = $this->session->id_user;
-        if($this->session->permission == 2){
+        if ($this->session->permission == 2) {
             $isAmbassador = TRUE;
-        }else{
+        } else {
             $isAmbassador = FALSE;
         }
+
 
         //insertion du vouvel event en DB et récupération de l'id de ce dernier.
         $eventModel = new Events_model();
         $eventId = $eventModel->insertNewEvent(
-               $nom, $date, $heure, $idVille->id_ville, $nbPlaces, $age, $presta, $prix,$idUser,$isAmbassador );
+                $nom, $date, $heure, $idVille->id_ville, $nbPlaces, $age, $presta, $prix, $idUser, $isAmbassador);
+
+        $userModel = new Users_model();
 
         //si l'événement a bien été créé
-        if (!$eventModel == FALSE) {
+        if (!$eventId == FALSE) {
+
+
+
+            foreach ($ambassadeursID as $ai) {
+                if ($ai > 0) {
+
+                    $res = $eventModel->AddAmbassyToEvent($ai, $eventId);
+                    if ($res == FALSE) {
+
+                        redirect('Dashboard_controller');
+                    }
+                }
+            }
+
+
             //vérifie qu'un média ai été choisi
             if ($_FILES['logo'] != null) {
 
                 $media = $_FILES['logo'];
                 $idMedia = $this->upload($media);
-                
-                if ($idMedia != NULL){
-                     $this->addMediaToEvent($eventId, $idMedia);
-                }else{
-                     redirect('Dashboard_controller');
-                }
 
-               
+                if ($idMedia != NULL) {
+                    $this->addMediaToEvent($eventId, $idMedia);
+                } else {
+                    redirect('Dashboard_controller');
+                }
             }
         }
     }
@@ -147,7 +177,7 @@ class Events_controller extends CI_Controller {
 //             
             } else {
 
-               return;
+                return;
             }
         }
     }
@@ -175,8 +205,18 @@ class Events_controller extends CI_Controller {
 
         $villeModel = new Villes_model();
         $ville = $villeModel->getNomVilleFromId($event->id_ville);
+        
+        
 
 
+        $amb = $eventModel->getAmbDetailsFromIdEvent($eventId);
+
+        if ($amb != NULL) {
+            $amb = $amb;
+        } else {
+
+            $amb = '';
+        }
         switch ($event->id_tranche_age) {
 
             case 1:
@@ -227,12 +267,14 @@ class Events_controller extends CI_Controller {
         }
         $statutsModel = new Statuts_model();
         $allStatuts = $statutsModel->getAllStatuts();
+        $userModel = new Users_model();
+
 
         $imagePath = base_url() . 'uploads/';
 
         $comments = $eventModel->getCommentsByEventId($event->id_event);
 
-
+        $ambass = $userModel->getAmbassadeurs();
 
 
         $data = array(
@@ -250,8 +292,11 @@ class Events_controller extends CI_Controller {
             "statut" => $statut,
             "event" => $event,
             "statuts" => $allStatuts,
-            "commentaires" => $comments
+            "commentaires" => $comments,
+            "amb" => $amb,
+            "ambass" => $ambass
         );
+
 
         $this->load->view('layout/header');
         $this->load->view('layout/sidebar');
@@ -287,5 +332,6 @@ class Events_controller extends CI_Controller {
             echo 'media null';
         }
     }
+  
 
 }

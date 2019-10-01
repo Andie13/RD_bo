@@ -204,7 +204,7 @@ class Events_model extends CI_Model {
 
     public function insertNewEvent($nom, $date, $heure, $idVille, $nbPlaces, $idTage, $presta, $prix, $idUser, $isAmbassadeur) {
 
-        if ($presta != '') {
+        if ($presta != "à définir plus tard") {
             $status = 1;
         } else {
             $status = 5;
@@ -379,17 +379,33 @@ class Events_model extends CI_Model {
         }
     }
 
+    public function getAmbDetailsFromIdEvent($idEvent) {
+        
+        $query = $this->db->query("select * from users as u join ambassadeurs_event as ae on u.id_user = ae.id_user where ae.id_event=$idEvent");
+        
+        return $query->result();
+        
+    }
     public function getAllEventFromAmbId($userId) {
         
         $query = $this->db->query("select * from events join ambassadeurs_event on events.id_event = ambassadeurs_event.id_event where ambassadeurs_event.id_user = $userId");
 
         return $res = $query->result();
+
+    }
+    
+    public function deleteAmbFromEvent($eventId) {
         
+        $this->db->where(self::ID_EVENT, $eventId)
+                ->delete(self::TABLE_AMBASSADEUR_EVENT);
         
-        
+        if($this->db->affected_rows()>0){
+            
+            return TRUE;
+        }else{
+            return FALSE; 
+        }
                 
-        
-        
         
     }
     public function getLastStatusByEvent($idEvent) {

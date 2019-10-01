@@ -131,7 +131,15 @@ class Users_model extends CI_Model {
             return FALSE;
         }
     }
-    
+    public function getAmbassadeurs() {
+        
+        $this->db->where(self::ID_PERM_USER,2)
+                ->select()
+                ->from(self::TABLE_USERS);
+        
+        return $this->db->get()->result();
+        
+    }
     
     
 

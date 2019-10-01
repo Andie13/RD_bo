@@ -4842,10 +4842,10 @@ code {
 /*collapsed menu and chat open states*/
 
 .page-topbar.sidebar_shift .logo-area {
-    background-color: wheat;
+    background-color: whi;
 }
 .page-topbar.chat_shift .logo-area {
-    background-color: wheat;
+    background-color: white;
 }
 .chatapi-windows.hideit {
     bottom: -300px;
@@ -6777,16 +6777,17 @@ border-left: 3px solid transparent;
 ----------------------------------------------------------*/
 
 .page-topbar .logo-area {
-    background-image: url('../images/fake_logo.jpg');
+    background-image: url('../images/logo.png');
     background-repeat: no-repeat;
+    background-size: 70px;
 }
 .page-topbar.sidebar_shift .logo-area {
-    background-image: url('../images/fake_logo_1.png');
+    background-image: url('../images/logo-folded.png');
     background-repeat: no-repeat;
     background-position: right top;
 }
 .page-topbar.chat_shift .logo-area {
-    background-image: url('../images/fake_logo_1.png');
+    background-image: url('../images/logo-folded.png');
     background-repeat: no-repeat;
     background-position: right top;
 }
