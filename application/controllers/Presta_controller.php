@@ -39,7 +39,7 @@ class Presta_controller extends CI_Controller {
         $this->load->view('layout/header');
         $this->load->view('layout/sidebar');
 
-        $this->load->view('presta/add_presta_view');
+        $this->load->view('presta/Add_presta_view');
     }
 
     public function addPresta() {
