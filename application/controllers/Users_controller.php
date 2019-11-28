@@ -33,7 +33,7 @@ class Users_controller extends CI_Controller {
 
             $this->load->view('layout/sidebar');
 
-            $this->load->view('user/Users_view', $datas);
+            $this->load->view('user/users_view', $datas);
         } else {
             $this->load->view('login/login_view');
         }
