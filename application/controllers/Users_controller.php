@@ -71,7 +71,7 @@ class Users_controller extends CI_Controller {
         $resas = $eventMidel->getEventByUserId($userId);
         
         
-        if(count((arrey)$resas)>0){
+        if(count((array)$resas)>0){
             $datas['resas'] = $resas;
             
         }else{
