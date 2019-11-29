@@ -262,7 +262,7 @@ class Events_controller extends CI_Controller {
                 $statut = 'complet';
                 break;
             case 5:
-                $statut = 'En ettente de prestataire';
+                $statut = 'En attente de prestataire';
                 break;
         }
         $statutsModel = new Statuts_model();
