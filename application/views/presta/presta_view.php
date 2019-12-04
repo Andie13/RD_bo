@@ -36,7 +36,7 @@
 
 
 
-                        <table id="example" class="table table-striped dt-responsive display" cellspacing="0" width="100%">
+                        <table id="test" class="table table-striped dt-responsive display" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
 
@@ -109,7 +109,7 @@
 
     </section>
     <script>
-$('#example').dataTable( {
+$('#test').dataTable( {
     "aoColumnDefs": [
       { "bSearchable": true, "aTargets": [ 0 ] },
       { "bSearchable": false, "aTargets": [ 1] },
