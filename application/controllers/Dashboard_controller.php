@@ -55,10 +55,14 @@ class Dashboard_controller extends CI_Controller {
         
         $res = $eventModel->deleteEvent($idEvent);
         
-        if ($res) {
-            
-                        $this->session->set_flashdata('succes', "L'évènement a été correctement annulé");
-                        redirect('Dashboard_controller');
+         if ($res) {
+
+            $this->session->set_flashdata('success', "L\'évènement a été correctement annulé");
+            redirect('Dashboard_controller');
+        } else {
+
+            $this->session->set_flashdata('err', "Désolé, vous ne pouvez pas annuler cet event. ");
+            redirect("Dashboard_controller");
         }
         
         
