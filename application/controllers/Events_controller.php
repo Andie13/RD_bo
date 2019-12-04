@@ -104,7 +104,7 @@ class Events_controller extends CI_Controller {
 
                     $res = $eventModel->AddAmbassyToEvent($ai, $eventId);
                     if ($res == FALSE) {
-
+//erreur
                         redirect('Dashboard_controller');
                     }
                 }
@@ -120,6 +120,7 @@ class Events_controller extends CI_Controller {
                 if ($idMedia != NULL) {
                     $this->addMediaToEvent($eventId, $idMedia);
                 } else {
+                    //erreur
                     redirect('Dashboard_controller');
                 }
             }
@@ -133,8 +134,15 @@ class Events_controller extends CI_Controller {
             $eventModel = new Events_model();
             $eventModel->addMediaToEvent($idEvent, $idMedia);
 
-            redirect('Dashboard_controller');
+            if( $eventModel->addMediaToEvent($idEvent, $idMedia)){
+                //success
+                 redirect('Dashboard_controller');
+        }else{
+            //error
+            
         }
+            }
+           
     }
 
     public function upload($media) {
@@ -153,31 +161,32 @@ class Events_controller extends CI_Controller {
 
                 //check format
                 $type = $this->checkMediaType($mediaName);
-
-
-                $path = FCPATH . 'uploads';
+                if (!$type == NULL) {
+                    $path = FCPATH . 'uploads';
 //                  
-                move_uploaded_file($temp, "$path/$mediaName");
+                    move_uploaded_file($temp, "$path/$mediaName");
 
-                $imagePath = base_url() . 'uploads';
+                    $imagePath = base_url() . 'uploads';
 
-                $mm = new Medias_model();
+                    $mm = new Medias_model();
 
-                $idMedia = $mm->insertMedia($mediaName, $imagePath, $type);
+                    $idMedia = $mm->insertMedia($mediaName, $imagePath, $type);
 
-                if (!$idMedia == FALSE) {
+                    if (!$idMedia == FALSE) {
 
-                    return $idMedia;
+                        return $idMedia;
+                    } else {
+
+                        return NULL;
+                    }
                 } else {
 
-                    echo ' error pas d\'id media';
+                    return NULL;
                 }
-
-
-//             
+          
             } else {
 
-                return;
+                return NULL;
             }
         }
     }
@@ -194,6 +203,8 @@ class Events_controller extends CI_Controller {
         if ($ext == "mp4" || $ext == "avi" || $ext == "mov") {
             $typeMedia = 'video';
             return $typeMedia;
+        } else {
+            return NULL;
         }
     }
 
@@ -205,8 +216,8 @@ class Events_controller extends CI_Controller {
 
         $villeModel = new Villes_model();
         $ville = $villeModel->getNomVilleFromId($event->id_ville);
-        
-        
+
+
 
 
         $amb = $eventModel->getAmbDetailsFromIdEvent($eventId);
@@ -262,7 +273,7 @@ class Events_controller extends CI_Controller {
                 $statut = 'complet';
                 break;
             case 5:
-                $statut = 'En attente de prestataire';
+                $statut = 'En ettente de prestataire';
                 break;
         }
         $statutsModel = new Statuts_model();
@@ -332,6 +343,5 @@ class Events_controller extends CI_Controller {
             echo 'media null';
         }
     }
-  
 
 }
