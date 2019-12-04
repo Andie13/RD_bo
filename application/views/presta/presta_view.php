@@ -109,7 +109,13 @@
 
     </section>
     <script>
-
+$('#example').dataTable( {
+    "aoColumnDefs": [
+      { "bSearchable": true, "aTargets": [ 0 ] },
+      { "bSearchable": false, "aTargets": [ 1] },
+      { "bSearchable": false, "aTargets": [ 2] },
+      { "bSearchable": false, "aTargets": [ 3] }
+    ] } );
     </script>
 
 
