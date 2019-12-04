@@ -43,6 +43,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </header>
 
                     <div class="content-body">   
+			      <?php
+                      
+                        if ($this->session->flashdata('err')) {
+                            ?>
+                            <div class = "alert alert-error">
+                                <?php echo $this->session->flashdata('err'); ?>
+                            </div>
+                        <?php }else if(($this->session->flashdata('success'))){?>
+                             <div class = "alert alert-success">
+                                <?php echo $this->session->flashdata('success'); ?>
+                            </div>
+                            
+                            <?php   } ?>
                         <div class="row">
 
                             <table  id="events-table"class="table table-striped" cellspacing="0" width="100%">
