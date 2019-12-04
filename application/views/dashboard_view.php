@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="content-body">   
                         <div class="row">
 
-                            <table  class="table table-striped" cellspacing="0" width="100%">
+                            <table  id="events-table"class="table table-striped" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
 
@@ -147,6 +147,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
         });
+		
+		$('#events-table').dataTable( {
+    "aoColumnDefs": [
+      { "bSearchable": true, "aTargets": [ 0 ] },
+      { "bSearchable": false, "aTargets": [ 1] },
+      { "bSearchable": false, "aTargets": [ 2] },
+      { "bSearchable": false, "aTargets": [ 3] }
+    ] } );
 
     </script>
 
