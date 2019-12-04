@@ -36,7 +36,7 @@
                         <div class="row">
                             <div id="example-1_wrapper" class="dataTables_wrapper form-inline">
 
-                                <table id="example-1" class="table table-striped dt-responsive display dataTable dtr-inline" cellspacing="0" width="100%" role="grid" aria-describedby="example-1_info" style="width: 100%;">
+                                <table class="table table-striped dt-responsive display dataTable dtr-inline" cellspacing="0" width="100%" role="grid" aria-describedby="example-1_info" style="width: 100%;">
                                     <thead>
                                         <tr>
 
