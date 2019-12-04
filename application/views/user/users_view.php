@@ -36,7 +36,7 @@
                         <div class="row">
                             <div id="example-1_wrapper" class="dataTables_wrapper form-inline">
 
-                                <table class="table table-striped dt-responsive display dataTable dtr-inline" cellspacing="0" width="100%" role="grid" aria-describedby="example-1_info" style="width: 100%;">
+                                <table id="table-user" class="table table-striped dt-responsive display dataTable dtr-inline" cellspacing="0" width="100%" role="grid" aria-describedby="example-1_info" style="width: 100%;">
                                     <thead>
                                         <tr>
 
@@ -128,7 +128,13 @@
     </section>
     <script>
 
-
+$('#table-user').dataTable( {
+    "aoColumnDefs": [
+      { "bSearchable": true, "aTargets": [ 0 ] },
+      { "bSearchable": false, "aTargets": [ 1] },
+      { "bSearchable": false, "aTargets": [ 2] },
+      { "bSearchable": false, "aTargets": [ 3] }
+    ] } );
     </script>
 
 
