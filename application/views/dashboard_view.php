@@ -32,14 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <section class="box ">
                     <header class="panel_header">
                         <h2 class="title pull-left">Toutes mes soirées</h2>
-                        <?php
-                      
-                        if ($this->session->flashdata('success')) {
-                            ?>
-                            <div class = "alert alert-success">
-                                <?php echo $this->session->flashdata('success'); ?>
-                            </div>
-                        <?php } ?>
+
                     </header>
 
                     <div class="content-body">   
