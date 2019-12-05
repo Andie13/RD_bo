@@ -15,48 +15,124 @@
             <div id="login" class="login loginpage col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-0 col-xs-12">
                 <h1 style="color: white">Connexion administrateur</h1>
 
-                <form name="loginform" id="loginform" action="<?php echo base_url() . 'Login_controller/loginUser' ?>" method="post">
-                    <p>
-                        <label for="user_login">Votre email :<br />
-                            <input type="email" name="log" id="user_login" class="input" placeholder="Saisissez votre email"value="" size="20" /></label>
-                    </p>
-                    <p>
-                        <label for="user_pass">Votre mot de passe : <br />
-                            <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" /></label>
-                    </p>
+               <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+  <body class="bg">
+        <?php
+        if ($this->session->flashdata('err')) {
+            ?>
+            <div class = "alert alert-error">
+                <?php echo $this->session->flashdata('err'); ?>
+            </div>
+        <?php } ?>
+
+        <div class="login-wrapper">
+            <div id="login" class="login loginpage col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-0 col-xs-12">
+                <h1 style="color: white">Connexion administrateur</h1>
+
+                <form  id="loginForm" action="<?php echo base_url(); ?>user/Login_controller/Login" method="POST" enctype="multipart/form-data">
 
 
-                    <p class="submit">
-                        <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-orange btn-block" value="Connexion" />
-                    </p>
-                </form>
+                <div class="row">
+                    <div class="col-lg-12 ">
+                        <div class="col-lg-4">
+                            <label for="email">E-mail</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="email" id="lname" name="email" placeholder="Votre email..." required="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 ">
+                        <div class="col-lg-4">
+                            <label for="mdp">Mot de passe</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="password" id="lname" name="pass" placeholder="*****" required="">
+                        </div>
+                    </div>
 
-                <p id="nav">
-                    <a class="pull-left" id="showResetPassword" title="Password Lost and Found">Mot de passe oublié?</a>
+                </div>
+                <p class="formButton">
+                    <button type="submit" id="search_btn" class="btn btn-round btn-orange"><i class="">Connexion</i></button>
 
                 </p>
                 <br>
                 <br>
-                <br>
-                <form class="form-vertical box" id="form_reset_password" action="<?php echo base_url() . 'Login_controller/resetPassword' ?>"  method="post" style="margin-top:20px; visibility:hidden;">
+                <a class="pull-left " id="showResetPassword" title="Password Lost and Found">Mot de passe oublié?</a>
 
-                    <div class="form-group has-feedback" >
-                        <div class="">
-                            <label> Email Address </label>
-                            <input type="email" name="log" id="user_login" class="input" value="" placeholder="Saisissez votre email" size="20" />
-                            <i class="icon-envelope form-control-feedback"></i>
-                        </div>
-                    </div>
-                    <div class="col-lg-8 col-md-8 col-sm-9 col-xs-12 padding-bottom-30">
-                        <div class="text-left">
-                            <p style="display: inline-block;width: 10em;float: none"><input  style="background: #ffffff; color: rgb(63, 189, 209);" type="submit" name="reinitialiser" id="wp-submit" class="btn btn-danger btn-block" value="Réinitialiser" /></p>
-                            <p  style="display: inline-block;width: 10em;float: none"><input style="background: rgb(63, 189, 209); color: #ffffff"  id="hideForm" class="btn  btn-block" name="Annuler" id="wp-submit"  value="Annuler" /></p>
+            </form>
+            <br>
 
-                        </div>
+            <br>
+
+            <div class="reset" id="form_reset_password" >
+
+                <form  action="<?php echo base_url() . 'user/Login_controller/resetPassword' ?>" id="forget-mdp" method="post" style="">
+
+
+
+                    <h2 class="title ">Veuillez saisir votre adresse e-mail pour réinitialiser votre mot de passe.</h2>
+
+                    <div class="col-75">
+                        <input  type="email" id="lname" name="email" placeholder="Votre email..." required="">
                     </div>
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <p class="formButton">
+                        <button type="submit" id="search_btn" class="btn btn-round btn-orange"><i class="">Réinitialiser</i></button>
+
+                    </p>
+                    <br>
+                    <br>
+                    <a class="pull-left " id="retour" ><< Retour</a>
+
 
 
                 </form>
+
+            </div>
+        </div>
+<script>
+    $('#showResetPassword').click(function () {
+        $('#form_reset_password').css("visibility", "visible");
+    });
+    $('#hideForm').click(function () {
+        $('#form_reset_password').css("visibility", "hidden");
+    });
+
+
+
+
+
+</script>
+    </body>
+
+
+
+
+    <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
 
             </div>
         </div>
