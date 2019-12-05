@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div id="login" class="login loginpage col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-0 col-xs-12">
                 <h1 style="color: white">Connexion administrateur</h1>
 
-                <form  id="loginForm" action="<?php echo base_url(); ?>user/Login_controller/Login" method="POST" enctype="multipart/form-data">
+                <form  id="loginForm" action="<?php echo base_url() . 'Login_controller/loginUser' ?>" method="POST" enctype="multipart/form-data">
 
 
                 <div class="row">
@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <div class="reset" id="form_reset_password" >
 
-                <form  action="<?php echo base_url() . 'user/Login_controller/resetPassword' ?>" id="forget-mdp" method="post" style="">
+                <form  action="<?php echo base_url() . 'Login_controller/resetPassword' ?>" id="forget-mdp" method="post" style="">
 
 
 
