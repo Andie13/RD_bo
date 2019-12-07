@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <label for="email">Votre e-mail</label>
                         </div>
                         <div class="col-lg-8">
-                            <input type="email" id="user_login" name="log" placeholder="Votre email..." value=""required>
+                            <input type="email" name="log" placeholder="Votre email..." required>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <label for="mdp">Votre mot de passe</label>
                         </div>
                         <div class="col-lg-8">
-                            <input type="password" id="user_pass" name="pwd" placeholder="*****" required value="">
+                            <input type="password" name="pwd" placeholder="*****" required ">
                         </div>
                     </div>
 
