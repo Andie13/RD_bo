@@ -16,12 +16,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <form name="loginform" id="loginform" action="<?php echo base_url() . 'Login_controller/loginUser' ?>" method="post">
                     <p>
-                        <label for="user_login">Votre email :<br />
-                            <input type="email" name="log" id="user_login" class="input" placeholder="Saisissez votre email"value="" size="20" /></label>
+                        <label for="user_login">Votre email :<br /></label>
+                            <input type="email" name="log" id="user_login" class="input" placeholder="Saisissez votre email"value="" size="20" autofocus/>
                     </p>
                     <p>
-                        <label for="user_pass">Votre mot de passe : <br />
-                            <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" /></label>
+                        <label for="user_pass">Votre mot de passe : <br /></label>
+                            <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" autofocus/>
                     </p>
 
 
