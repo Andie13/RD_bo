@@ -255,7 +255,7 @@ if (isset($userId)) {
                                         foreach ($resas as $row) {
 
                                             $user = $userModel->getUserById($row->id_user);
-                                                 var_dump($resas);
+                                               
 
                                             echo '<tr>';
                                            
@@ -265,9 +265,9 @@ if (isset($userId)) {
                                             echo '<td>';
 							
                                           if($row->status_resa=="4"){
-                                                echo ;
+                                                echo 'Payée';
                                             }elseif($row->status_resa =="2"){
-                                                echo 'Annulé';
+                                                echo 'Annulée';
                                             }
                                             echo '</td>';
                                             
