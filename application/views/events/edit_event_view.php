@@ -51,7 +51,7 @@ if (isset($userId)) {
                     
                     <li>
                         <a href="#resas" data-toggle="tab">
-                            <i class="fa fa-calendar"></i>et modifier réservations
+                            <i class="fa fa-calendar"></i>modifier résas
                         </a>
                     </li>
                     <li>
