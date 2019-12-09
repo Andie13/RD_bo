@@ -76,7 +76,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn' => '',
-	'hostname' => 'lc431943-003.dbaas.ovh.net',
+    'hostname' => 'lc431943-003.dbaas.ovh.net',
     'username' => 'realdate-admin',
     'password' => 'Amaris2019',
     'database' => 'realdate',
@@ -95,3 +95,4 @@ $db['default'] = array(
     'failover' => array(),
     'save_queries' => TRUE
 );
+$db['default']['port']=35613;
