@@ -76,7 +76,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn' => '',
-//	'hostname' => 'lc431943-003.dbaas.ovh.net',
+	'hostname' => 'lc431943-003.dbaas.ovh.net',
     'username' => 'realdate-admin',
     'password' => 'Amaris2019',
     'database' => 'realdate',
