@@ -255,7 +255,7 @@ if (isset($userId)) {
                                         foreach ($resas as $row) {
 
                                             $user = $userModel->getUserById($row->id_user);
-                                            
+                                                 var_dump($resas);
 
                                             echo '<tr>';
                                            
@@ -263,7 +263,7 @@ if (isset($userId)) {
                                             echo $row->ref_resa;
                                             echo '</td>';
                                             echo '<td>';
-											echo $row->status_resa;
+							
                                           if($row->status_resa=="4"){
                                                 echo ;
                                             }elseif($row->status_resa =="2"){
