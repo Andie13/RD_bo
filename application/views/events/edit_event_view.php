@@ -263,10 +263,10 @@ if (isset($userId)) {
                                             echo $row->ref_resa;
                                             echo '</td>';
                                             echo '<td>';
-                                          if($row->status_resa==4){
+                                          if($row->status_resa=="4"){
                                                 echo 'Payé';
-                                            }elseif($row->status_resa ==2){
-                                                echo 'annulé';
+                                            }elseif($row->status_resa =="2"){
+                                                echo 'Annulé';
                                             }
                                             echo '</td>';
                                             
