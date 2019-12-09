@@ -45,23 +45,23 @@ if (isset($userId)) {
                     </li>
                     <li>
                         <a href="#details" data-toggle="tab">
-                            <i class="fa fa-edit"></i> Modifier détails 
+                            <i class="fa fa-edit"></i> détails 
                         </a>
                     </li>
                     
                     <li>
                         <a href="#resas" data-toggle="tab">
-                            <i class="fa fa-calendar"></i>modifier résas
+				<i class="fa fa-calendar"></i> résas
                         </a>
                     </li>
                     <li>
                         <a href="#medias" data-toggle="tab">
-                            <i class="fa fa-camera-retro"></i> modifier Médias
+                            <i class="fa fa-camera-retro"></i> Médias
                         </a>
                     </li>
                     <li>
                         <a href="#presta" data-toggle="tab">
-                            <i class="fa fa-glass"></i> modifier Prestataires
+                            <i class="fa fa-glass"></i> Prestataires
                         </a>
                     </li>
                   
