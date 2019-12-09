@@ -100,8 +100,14 @@ if (isset($userId)) {
                     <div class="uprofile-name">
 
                         <h2>Détails de la soirée: </h2>
-                        <div class="uprofile-image">
-                            <img src="<?php echo base_url() ?>uploads/event.jpg" class="img-responsive">
+                       <div class="uprofile-image">
+                            <?php if($media!=''){
+     echo ' <img src="'.$media->path_media.'/'.$media->nom_media.'" class="img-responsive">';
+                            }else{
+                                echo '<img src="<?php echo base_url() ?>uploads/event.jpg" class="img-responsive">';
+                            }
+?>
+                            
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="field-1">Nom de l'évènement</label>
