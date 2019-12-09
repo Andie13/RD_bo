@@ -24,10 +24,10 @@ if (isset($userId)) {
                                 <a href="index.html"><i class="fa fa-home"></i>Home</a>
                             </li>
                             <li>
-                                <a href="mus-playlists.html">Playlists</a>
+                                <a href="mus-playlists.html">Events</a>
                             </li>
                             <li class="active">
-                                <strong>Edit Playlist</strong>
+                                <strong>Edit Event</strong>
                             </li>
                         </ol>
                     </div>
@@ -48,6 +48,12 @@ if (isset($userId)) {
                             <i class="fa fa-edit"></i> Modifier détails 
                         </a>
                     </li>
+                    
+                    <li>
+                        <a href="#resas" data-toggle="tab">
+                            <i class="fa fa-calendar"></i>et modifier réservations
+                        </a>
+                    </li>
                     <li>
                         <a href="#medias" data-toggle="tab">
                             <i class="fa fa-camera-retro"></i> modifier Médias
@@ -58,6 +64,7 @@ if (isset($userId)) {
                             <i class="fa fa-glass"></i> modifier Prestataires
                         </a>
                     </li>
+                  
                     <li>
                         <a href="#amb" data-toggle="tab">
                             <i class="fa fa-user"></i>Amabassadeurs
@@ -212,6 +219,88 @@ if (isset($userId)) {
 
 
                 </div>
+                 <div class="tab-pane fade in" id="resas">
+                     <div class="row">
+
+                            <table  class="table table-striped" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+
+                                        <th>ref</th>
+                                        <th>statut résa</th>
+                                        <th>nom_user</th>
+                                         <th>action</th>
+                                       
+
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+
+                                        <th>ref</th>
+                                        <th>statut résa</th>
+                                        <th>nom_user</th>
+                                        <th>action</th>
+
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <?php
+                                    $resasModel = new Resas_model();
+                                    $userModel = new Users_model();
+                                    $resas = $resasModel->getResasFromEvent($event->id_event);
+                                    
+
+                                    if ($resas > 0) {
+                                        foreach ($resas as $row) {
+
+                                            $user = $userModel->getUserById($row->id_user);
+                                            
+
+                                            echo '<tr>';
+                                           
+                                            echo '<td>';
+                                            echo $row->ref_resa;
+                                            echo '</td>';
+                                            echo '<td>';
+                                          if($row->status_resa==4){
+                                                echo 'Payé';
+                                            }elseif($row->status_resa ==2){
+                                                echo 'annulé';
+                                            }
+                                            echo '</td>';
+                                            
+                                            
+                                            echo '<td>';
+                                             echo $user->nom_user;
+                                            echo '</td>';
+                                           
+                                           
+                                           
+
+                                            echo '<td>';
+                                           
+                                            echo '<p><a class="delete" href="' . base_url() . 'Dashboard_controller/annulerEvent?id=' . $row->id_event . '">Annuler</a></p></form';
+
+                                            echo '</td>';
+                                            echo '</tr>';
+                                        }
+                                    }else{
+                                        echo 'Vous n\'avez aucune réservation pour cet événement.';
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                            <!-- ********************************************** -->
+                            <button  class="btn btn-val btn-icon right15" style="background-color:#99ccff">  
+                                <i class="fa fa-plus " style="color:white"></i>
+                                <a style="color:white" href="<?php echo base_url() ?>Events_controller">
+                                    Ajouter une soirée
+                                </a>
+                            </button>
+                        </div>
+                 </div>
+                
                 <div class="tab-pane fade in" id="medias">
 
                     <div class="form-group">
