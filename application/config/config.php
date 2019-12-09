@@ -523,3 +523,5 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 $config['upload_path'] = realpath(FCPATH.'uploads');
+
+$config['google_api_key']= 'AIzaSyDKjDUzhTsS31Y9ph5aPjfzGGQBEqlETeU';
