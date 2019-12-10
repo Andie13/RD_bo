@@ -289,7 +289,7 @@ if (isset($userId)) {
                                             echo '<td>';
                                            if($permission == "4"){
 						 
-                                            echo '<p><a class="delete" href="' . base_url() . 'events/Update_event_controller/cancelResa?id_resa=' . $row->id_resa . '&id_event=$row->id_event">Annuler</a></p>';
+                                            echo '<p><a class="delete" href="' . base_url() . 'events/Update_event_controller/cancelResa?id_resa=' . $row->id_resa . '&id_event='.$row->id_event.'">Annuler</a></p>';
 					   }else{
                                             echo '<p><a id="delete" class="delete" href="#" >Annuler</a></p>';
 					   }
