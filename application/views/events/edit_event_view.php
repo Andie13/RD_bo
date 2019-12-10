@@ -291,7 +291,7 @@ if (isset($userId)) {
 						 
                                             echo '<p><a class="delete" href="' . base_url() . 'events/Update_event_controller/cancelResa?id=' . $row->id_resa . '">Annuler</a></p>';
 					   }else{
-                                            echo '<p><a class="delete" href="#" onclick="message_delete">Annuler</a></p>';
+                                            echo '<p><a class="delete" href="#" onclick="message_delete()">Annuler</a></p>';
 					   }
                                             echo '</td>';
                                             echo '</tr>';
