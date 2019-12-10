@@ -62,7 +62,9 @@
                     }elseif ($this->session->permission == 1) {
                         $role = 'Administrateur';
                         
-                    }
+                    }elseif($this->session->permission == 4){
+						$role = 'Super-Admin';
+}
 ?>
                     <p class="profile-title"><?php echo $role;?></p>
 
