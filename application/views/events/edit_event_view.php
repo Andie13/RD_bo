@@ -280,6 +280,7 @@ if (isset($userId)) {
                                             
                                             echo '<td>';
                                              echo $user->nom_user;
+						echo $permission;
                                             echo '</td>';
                                            
                                            
@@ -301,13 +302,7 @@ if (isset($userId)) {
                                     ?>
                                 </tbody>
                             </table>
-                            <!-- ********************************************** -->
-                            <button  class="btn btn-val btn-icon right15" style="background-color:#99ccff">  
-                                <i class="fa fa-plus " style="color:white"></i>
-                                <a style="color:white" href="<?php echo base_url() ?>Events_controller">
-                                    Ajouter une soirée
-                                </a>
-                            </button>
+                          
                         </div>
                  </div>
                 
