@@ -63,6 +63,7 @@ class Update_event_controller extends CI_Controller {
         $resa = $rm->getResaDetails($idResa);
  
 	$this->changeStatusResa($idResa);
+		  $this->updateCagnotte($resa->id_user,  $event->prix_event);
 		 
         
     }
@@ -71,18 +72,18 @@ class Update_event_controller extends CI_Controller {
 
         $rm = new Resas_model();
         if ($rm->cancelResa($resa)) {
-            echo 'c est bon';
+            return TRUE;
         } else {
-           echo 'erreur';
+           $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
+            redirect("Events_controller/displayEventDetails?id=$idEvent");
+      
         }
     }
     public function updateCagnotte($idUser,$prix) {
         
         $um = new Users_model();
         if($um->updateCagnotte($prix,$idUser)){
-             $this->session->set_flashdata('success', "La réservation a été annulée. La cagnotte à été mise à jour.");
-            redirect("Events_controller/displayEventDetails?id=$idEvent");
-       
+            echo 'OK';
         }else{
             $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
             redirect("Events_controller/displayEventDetails?id=$idEvent");
