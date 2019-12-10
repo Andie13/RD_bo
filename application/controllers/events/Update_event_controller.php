@@ -62,8 +62,7 @@ class Update_event_controller extends CI_Controller {
         $event = $em->getEventDetailsById($idEvent);
         $resa = $rm->getResaDetails($idResa);
  
-        var_dump($idResa);
-		  var_dump($idEvent);
+	$this->changeStatusResa($idResa);
 		 
         
     }
@@ -72,10 +71,9 @@ class Update_event_controller extends CI_Controller {
 
         $rm = new Resas_model();
         if ($rm->cancelResa($resa->id_resa)) {
-            return TRUE;
+            echo 'c est bon';
         } else {
-            $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
-            redirect("Events_controller/displayEventDetails?id=$idEvent");
+           echo 'erreur';
         }
     }
     public function updateCagnotte($idUser,$prix) {
