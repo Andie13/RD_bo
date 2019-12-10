@@ -28,5 +28,26 @@ class Resas_model extends CI_Model {
 
         return $data = $this->db->get()->result();
     }
+	
+	  public function getResaDetails($idResa) {
+         $this->db->where(self::ID_RESA, $idResa)               
+                ->select()
+                ->from(self::TABLE_RESA);
+
+        return $data = $this->db->get()->row();
+        
+    }
+    public function cancelResa($idResa){
+        
+        $this->db->where(self::ID_RESA, $idResa) 
+                ->set(self::STATUS_RESA,2)
+                ->update(self::TABLE_RESA);
+        
+        if($this->db->affected_rows()>0){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
 
 }
