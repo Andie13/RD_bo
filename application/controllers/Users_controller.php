@@ -63,6 +63,9 @@ class Users_controller extends CI_Controller {
             case 2:
                 $perm = 'Ambassadeur';
                 break;
+			case 4:
+				$perm = 'Super Admin';
+				break;
             default:
                 $perm = 'Client';
                 break;
