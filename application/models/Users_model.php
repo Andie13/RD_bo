@@ -33,6 +33,7 @@ class Users_model extends CI_Model {
     const NOM_GENRE = 'nom_genre';
     
     const COMMENTAIRE = 'commentaire';
+	    const CAGNOTTE = 'cagnotte';
 
     public function getAllUsers() {
         $this->db->select()
