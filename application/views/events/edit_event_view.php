@@ -291,7 +291,7 @@ if (isset($userId)) {
 						 
                                             echo '<p><a class="delete" href="' . base_url() . 'events/Update_event_controller/cancelResa?id=' . $row->id_resa . '">Annuler</a></p>';
 					   }else{
-                                            echo '<p><a class="delete" href="#" onclick="message_delete()">Annuler</a></p>';
+                                            echo '<p><a id="delete" class="delete" href="#" >Annuler</a></p>';
 					   }
                                             echo '</td>';
                                             echo '</tr>';
@@ -489,11 +489,18 @@ if (isset($userId)) {
 
     google.maps.event.addDomListener(window, 'load', initialize);
 	
-	function message_delete(){
-		alert("Vous n'avez pas les droits pour réaliser cette action.");
-	}
+	
 </script>
 
+ <script type="text/javascript">
+        $(document).ready(function () {
+            $('#delete').on('click', function () {
+                return confirm('Vous ne pouvez pas effectuer cet action. Erreur Permission');
+            });
+            $('.statut:contains("annulé - réservation ou soirée")').css('color', 'red');
+        });
+	 
+</script>
 
 
 
