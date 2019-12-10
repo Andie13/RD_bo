@@ -43,7 +43,7 @@ if ($connected) {
                             <i class="fa fa-user"></i>l'utilisateur
                         </a>
                     </li>
-					<?php if($perm=='Super Admin'){
+					<?php if($permission =='Super Admin'){
 					echo '<li>
                         <a href="#details" data-toggle="tab">
                             <i class="fa fa-edit"></i> Modifier rôle 
