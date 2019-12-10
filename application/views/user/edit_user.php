@@ -44,8 +44,8 @@ if ($connected) {
                         </a>
                     </li>
 					<?php 
-			echo $permission;
-			if($permission =='Super-Admin'){
+			
+			if($permission ==4){
 					echo '<li>
                         <a href="#details" data-toggle="tab">
                             <i class="fa fa-edit"></i> Modifier rôle 
