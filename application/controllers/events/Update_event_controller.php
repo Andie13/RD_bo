@@ -70,7 +70,7 @@ class Update_event_controller extends CI_Controller {
     public function changeStatusResa($resa) {
 
         $rm = new Resas_model();
-        if ($rm->cancelResa($resa->id_resa)) {
+        if ($rm->cancelResa($resa)) {
             echo 'c est bon';
         } else {
            echo 'erreur';
