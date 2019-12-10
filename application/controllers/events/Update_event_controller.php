@@ -52,13 +52,47 @@ class Update_event_controller extends CI_Controller {
         }
     }
 
-	public function cancelResa(){
-		
-		$idResa = $this->input->get('id_resa');
-		
-		
-		
-	}
+	  public function cancelResa() {
+
+        $idResa = $this->input->get('id_resa');
+        $idEvent = $this->input->get('id_event');
+        
+        $em = new Events_model();
+        $rm = new Resas_model();
+        $event = $em->getEventDetailsById($idEvent);
+        $resa = $rm->getResaDetails($idResa);
+ 
+        $this->changeStatusResa($idResa);
+        $this->updateCagnotte($resa->id_user,  $event->prix_event);
+        
+    }
+
+    public function changeStatusResa($resa) {
+
+        $rm = new Resas_model();
+        if ($rm->cancelResa($resa->id_resa)) {
+            return TRUE;
+        } else {
+            $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
+            redirect("Events_controller/displayEventDetails?id=$idEvent");
+        }
+    }
+    public function updateCagnotte($idUser,$prix) {
+        
+        $um = new Users_model();
+        if($um->updateCagnotte($prix,$idUser)){
+             $this->session->set_flashdata('success', "La réservation a été annulée. La cagnotte à été mise à jour.");
+            redirect("Events_controller/displayEventDetails?id=$idEvent");
+       
+        }else{
+            $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
+            redirect("Events_controller/displayEventDetails?id=$idEvent");
+       
+        }
+        
+        
+    }
+
     public function changePrestaEvent() {
 
         $idEvent = $this->input->post('id_event');
