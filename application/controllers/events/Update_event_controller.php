@@ -63,7 +63,7 @@ class Update_event_controller extends CI_Controller {
         $resa = $rm->getResaDetails($idResa);
  
 	$this->changeStatusResa($idResa);
-		  $this->updateCagnotte($resa->id_user,  $event->prix_event);
+	$this->updateCagnotte($resa->id_user,  $event->prix_event);
 		 
         
     }
@@ -85,8 +85,7 @@ class Update_event_controller extends CI_Controller {
         if($um->updateCagnotte($prix,$idUser)){
             echo 'OK';
         }else{
-            $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
-            redirect("Events_controller/displayEventDetails?id=$idEvent");
+            echo 'error';
        
         }
         
