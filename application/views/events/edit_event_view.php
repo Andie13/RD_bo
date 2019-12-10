@@ -288,10 +288,10 @@ if (isset($userId)) {
 
                                             echo '<td>';
                                            if($permission == "4"){
-						   
-                                            echo '<p><a class="delete" href="' . base_url() . 'events/Update_event_controller/cancelResa?id=' . $row->id_resa . '">Annuler</a></p></form';
+						 
+                                            echo '<p><a class="delete" href="' . base_url() . 'events/Update_event_controller/cancelResa?id=' . $row->id_resa . '">Annuler</a></p>';
 					   }else{
-                                            echo '<p><a class="delete" href="" onclick="message_delete">Annuler</a></p></form';
+                                            echo '<p><a class="delete" href="#" onclick="message_delete">Annuler</a></p>';
 					   }
                                             echo '</td>';
                                             echo '</tr>';
@@ -490,7 +490,7 @@ if (isset($userId)) {
     google.maps.event.addDomListener(window, 'load', initialize);
 	
 	function message_delete(){
-		alert("Vous n'avez pas les droits pour réaliser cette action.";
+		alert("Vous n'avez pas les droits pour réaliser cette action.");
 	}
 </script>
 
