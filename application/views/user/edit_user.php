@@ -43,11 +43,14 @@ if ($connected) {
                             <i class="fa fa-user"></i>l'utilisateur
                         </a>
                     </li>
-                    <li>
+					<?php if($perm==4){
+					echo '<li>
                         <a href="#details" data-toggle="tab">
                             <i class="fa fa-edit"></i> Modifier rôle 
                         </a>
-                    </li>                
+                    </li>    ';
+}?>
+                                
                     <li>
                         <a href="#location" data-toggle="tab">
                             <i class="fa fa-map-marker"></i>secteur
