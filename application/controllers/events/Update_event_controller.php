@@ -52,6 +52,13 @@ class Update_event_controller extends CI_Controller {
         }
     }
 
+	public function cancelResa(){
+		
+		$idResa = $this->input->get('id_resa');
+		
+		
+		
+	}
     public function changePrestaEvent() {
 
         $idEvent = $this->input->post('id_event');
