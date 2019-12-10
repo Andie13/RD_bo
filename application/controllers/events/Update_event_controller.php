@@ -62,8 +62,9 @@ class Update_event_controller extends CI_Controller {
         $event = $em->getEventDetailsById($idEvent);
         $resa = $rm->getResaDetails($idResa);
  
-        $this->changeStatusResa($idResa);
-        $this->updateCagnotte($resa->id_user,  $event->prix_event);
+        var_dump($idResa);
+		  var_dump($idEvent);
+		 
         
     }
 
