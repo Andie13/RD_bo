@@ -305,7 +305,8 @@ class Events_controller extends CI_Controller {
             "statuts" => $allStatuts,
             "commentaires" => $comments,
             "amb" => $amb,
-            "ambass" => $ambass
+            "ambass" => $ambass,
+			"permission" = $this->session->permission;
         );
 
 
