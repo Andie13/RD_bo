@@ -280,14 +280,14 @@ if (isset($userId)) {
                                             
                                             echo '<td>';
                                              echo $user->nom_user;
-						echo $permission;
+					
                                             echo '</td>';
                                            
                                            
                                            
 
                                             echo '<td>';
-                                           if($permission == 4){
+                                           if($permission == "4"){
 						   
                                             echo '<p><a class="delete" href="' . base_url() . 'events/Update_event_controller/cancelResa?id=' . $row->id_resa . '">Annuler</a></p></form';
 					   }else{
