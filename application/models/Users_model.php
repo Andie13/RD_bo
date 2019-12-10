@@ -96,6 +96,21 @@ class Users_model extends CI_Model {
         }
         
     }
+	
+	  public function updateCagnotte($prix, $idUser) {
+        
+         $this->db->where(self::ID_USER,$idUser)
+                ->set(self::CAGNOTTE, $prix)
+                ->update(self::TABLE_USERS);
+        
+        if($this->db->affected_rows()>0){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+        
+        
+    }
     
       public function registerUser( $nom, $prenom, $email,$tel,$pass, $role) {
 
