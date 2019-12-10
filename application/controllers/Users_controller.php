@@ -86,6 +86,7 @@ class Users_controller extends CI_Controller {
 
             $datas['userId'] = $this->session->userId;
             $datas['connected'] = $this->session->connected;
+	    $datas['permission'] = $this->session->permission;
             $datas['user'] = $user;
             $datas['perms'] = $perms;
             $datas['perm'] = $perm;
