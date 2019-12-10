@@ -74,8 +74,7 @@ class Update_event_controller extends CI_Controller {
         if ($rm->cancelResa($resa)) {
             return TRUE;
         } else {
-           $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
-            redirect("Events_controller/displayEventDetails?id=$idEvent");
+           echo OK
       
         }
     }
