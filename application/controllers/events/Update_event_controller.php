@@ -74,7 +74,7 @@ class Update_event_controller extends CI_Controller {
         if ($rm->cancelResa($resa)) {
             return TRUE;
         } else {
-           echo OK
+           echo 'KO';
       
         }
     }
