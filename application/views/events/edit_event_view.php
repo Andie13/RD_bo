@@ -287,7 +287,7 @@ if (isset($userId)) {
 
                                             echo '<td>';
                                            
-                                            echo '<p><a class="delete" href="' . base_url() . 'Dashboard_controller/annulerEvent?id=' . $row->id_event . '">Annuler</a></p></form';
+                                            echo '<p><a class="delete" href="' . base_url() . 'events/Update_event_controller/cancelResa?id=' . $row->id_resa . '">Annuler</a></p></form';
 
                                             echo '</td>';
                                             echo '</tr>';
