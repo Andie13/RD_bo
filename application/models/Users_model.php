@@ -100,6 +100,8 @@ class Users_model extends CI_Model {
 	
 	  public function updateCagnotte($prix, $idUser) {
         
+	$user = $this->getUserById($idUser);
+		  $cagnotte = $user->cagnotte+$prix;
          $this->db->where(self::ID_USER,$idUser)
                 ->set(self::CAGNOTTE, $prix)
                 ->update(self::TABLE_USERS);
