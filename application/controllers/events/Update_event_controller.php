@@ -87,9 +87,7 @@ class Update_event_controller extends CI_Controller {
             $this->session->set_flashdata('success', "la réservation a été annulée avec succès. La cagnotte  de l'utilisateur à été créditée ");
             redirect("Events_controller/displayEventDetails?id=$idEvent");
         }else{
-           $this->session->set_flashdata('err', "Oups! Ça n'a pas marché ;( ");
-            redirect("Events_controller/displayEventDetails?id=$idEvent");
-       
+           
        
         }
         
