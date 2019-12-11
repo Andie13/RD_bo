@@ -62,29 +62,34 @@ class Update_event_controller extends CI_Controller {
         $event = $em->getEventDetailsById($idEvent);
         $resa = $rm->getResaDetails($idResa);
  
-	$this->changeStatusResa($idResa);
-	$this->updateCagnotte($resa->id_user,  $event->prix_event);
+	$this->changeStatusResa($idResa,$idEvent);
+	$this->updateCagnotte($resa->id_user,  $event->prix_event,$idEvent);
 		 
         
     }
 
-    public function changeStatusResa($resa) {
+    public function changeStatusResa($resa,$idEvent) {
 
         $rm = new Resas_model();
         if ($rm->cancelResa($resa)) {
             return TRUE;
         } else {
-           echo 'KO';
+          $this->session->set_flashdata('err', "Oups! Cette résa a déjà été annulée! ");
+            redirect("Events_controller/displayEventDetails?id=$idEvent");
+       
       
         }
     }
-    public function updateCagnotte($idUser,$prix) {
+    public function updateCagnotte($idUser,$prix,$idEvent) {
         
         $um = new Users_model();
         if($um->updateCagnotte($prix,$idUser)){
-            echo 'OK';
+            $this->session->set_flashdata('success', "la réservation a été annulée avec succès. La cagnotte  de l'utilisateur à été créditée ");
+            redirect("Events_controller/displayEventDetails?id=$idEvent");
         }else{
-            echo 'error';
+           $this->session->set_flashdata('err', "Oups! Ça n'a pas marché ;( ");
+            redirect("Events_controller/displayEventDetails?id=$idEvent");
+       
        
         }
         
