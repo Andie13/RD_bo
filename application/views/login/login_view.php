@@ -14,22 +14,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div id="login" class="login loginpage col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-0 col-xs-12">
                 <h1 style="color: white">Connexion administrateur</h1>
 
-<!--                <form name="loginform" id="loginform" action="<?php echo base_url() . 'Login_controller/loginUser' ?>" method="post">
+                <form name="loginform" id="loginform" action="<?php echo base_url() . 'Login_controller/loginUser' ?>" method="post">
                     <p>
                         <label for="user_login">Votre email :<br /></label>
-                            <input type="email" name="log" id="user_login" class="input" placeholder="Saisissez votre email"value="" size="20" autofocus/>
+                            <input type="email" name="log"  class="input" placeholder="Saisissez votre email" size="20" />
                     </p>
                     <p>
                         <label for="user_pass">Votre mot de passe : <br /></label>
-                            <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" autofocus/>
+                            <input type="password" name="pwd"  class="input" value="" size="20" />
                     </p>
 
 
                     <p class="submit">
                         <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-orange btn-block" value="Connexion" />
                     </p>
-                </form>-->
-<form  id="loginForm" action="<?php echo base_url() . 'Login_controller/loginUser' ?>" method="POST" enctype="multipart/form-data">
+                </form>
+<!--<form  id="loginForm" action="<?php echo base_url() . 'Login_controller/loginUser' ?>" method="POST" enctype="multipart/form-data">
 
 
                 <div class="row">
@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <br>
                 <br>
 
-            </form>
+            </form>-->
                 <p id="nav">
                     <a class="pull-left" id="showResetPassword" title="Password Lost and Found">Mot de passe oublié?</a>
 
