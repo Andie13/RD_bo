@@ -58,6 +58,7 @@
                                         <div class="col-xs-4" style='padding-left:0px;'>
                                             <input type="text" class="form-control timepicker col-md-4" name="heure" data-template="dropdown" data-show-seconds="true" data-default-time="09:45 PM" data-show-meridian="true" data-minute-step="5" data-second-step="5" required>
                                         </div>
+					   
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -221,13 +222,13 @@ showButtonPanel: true
 $.datepicker.setDefaults($.datepicker.regional['fr']);
 	    
 	    
-$(function () {
+
     $('.timepicker').timepicker({
         use24hours: true,
         format: 'HH:mm'
     });
 });
-    });
+
 
 
 </script>   
