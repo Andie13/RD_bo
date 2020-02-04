@@ -220,6 +220,11 @@ showButtonPanel: true
 };
 $.datepicker.setDefaults($.datepicker.regional['fr']);
 
+		$('input.timepicker').timepicker({
+    timeFormat: 'HH:mm:ss',
+});
+
+
     });
 
 
