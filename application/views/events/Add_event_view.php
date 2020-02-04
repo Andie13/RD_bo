@@ -222,7 +222,7 @@ showButtonPanel: true
 $.datepicker.setDefaults($.datepicker.regional['fr']);
 	    
 $(function () {
-    $('.timepicker').datetimepicker({
+    $('.timepicker').timepicker({
         use24hours: true
     });
 });
