@@ -195,12 +195,7 @@
             minLength: 3,
 
         });
-
-$("#datedebut").datepicker({ dateFormat: 'dd/mm/yy', 
-    changeMonth: true 
-    , changeYear: true 
-    , yearRange: '-1:+1' 
-  });
+$("#datepicker").datepicker("option", "dateFormat", "dd-mm-yy" ).val();
 
     });
 
