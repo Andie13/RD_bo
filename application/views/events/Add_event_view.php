@@ -221,12 +221,11 @@ showButtonPanel: true
 };
 $.datepicker.setDefaults($.datepicker.regional['fr']);
 	    
-	    
-
-    $('.timepicker').timepicker({
-        use24hours: true,
-        format: 'HH:mm'
+$(function () {
+    $('.timepicker').datetimepicker({
+        use24hours: true
     });
+});
 });
 
 
