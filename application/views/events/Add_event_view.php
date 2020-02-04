@@ -53,7 +53,7 @@
                                     <label class="form-label" for="field-1">Date & Heure</label>
                                     <div class="row">
                                         <div class="col-xs-8">
-                                            <input type="text" name="date" value="15-08-2019" class="form-control datepicker col-md-4" data-format="DD-MM-YYYY" required>
+                                            <input type="datetime-local" name="date" value="15-08-2019" class="form-control datepicker col-md-4" data-format="DD-MM-YYYY" required>
                                         </div>
                                         <div class="col-xs-4" style='padding-left:0px;'>
                                             <input type="text" class="form-control timepicker col-md-4" name="heure" data-template="dropdown" data-show-seconds="true" data-default-time="09:45 PM" data-show-meridian="true" data-minute-step="5" data-second-step="5" required>
