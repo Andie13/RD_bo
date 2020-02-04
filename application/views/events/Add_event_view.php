@@ -196,7 +196,11 @@
 
         });
 
-$.datepicker.setDefaults( $.datepicker.regional[ "fr" ] );
+$("#datedebut").datepicker({ dateFormat: 'dd/mm/yy', 
+    changeMonth: true 
+    , changeYear: true 
+    , yearRange: '-1:+1' 
+  });
 
     });
 
