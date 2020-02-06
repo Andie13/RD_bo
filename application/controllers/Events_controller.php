@@ -135,17 +135,18 @@ class Events_controller extends CI_Controller {
     }
 
     public function addMediaToEvent($idEvent, $idMedia) {
-
+	echo $idEvent;
+	    echo $idMedia;
         if ($idEvent != null && $idMedia != null) {
 
-            $eventModel = new Events_model();
-            $eventModel->addMediaToEvent($idEvent, $idMedia);
+           // $eventModel = new Events_model();
+           
 
-            if( $eventModel->addMediaToEvent($idEvent, $idMedia)){
+            //if( $eventModel->addMediaToEvent($idEvent, $idMedia)){
                 //success
-                echo 'OK';
+                //echo 'OK';
                 // redirect('Dashboard_controller');
-        }else{
+       / }else{
             //error
             
         }
