@@ -213,7 +213,8 @@ class Events_controller extends CI_Controller {
         $eventId = $this->input->get('id');
         $eventModel = new Events_model();
         $event = $eventModel->getEventDetailsById($eventId);
-
+    	$nbresaFromEvent = $eventModel->getNbResaByEventId($eventId);
+        $resaDispo = $event->nb_places_event - $nbresaFromEvent;
         $villeModel = new Villes_model();
         $ville = $villeModel->getNomVilleFromId($event->id_ville);
 
@@ -306,7 +307,8 @@ class Events_controller extends CI_Controller {
             "commentaires" => $comments,
             "amb" => $amb,
             "ambass" => $ambass,
-	    "permission" => $this->session->permission
+	    "permission" => $this->session->permission,
+            "places_restantes" =>$resaDispo
         );
 
 
