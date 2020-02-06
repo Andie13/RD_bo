@@ -199,7 +199,7 @@ class Events_controller extends CI_Controller {
         $temp = (explode('.', $picNmae));
         $tempExtExplode = end($temp);
         $ext = strtolower($tempExtExplode);
-        if ($ext == "jpg" || $ext == "jpeg" || $ext == "png") {
+        if ($ext == "jpg" ||$ext =="JPG" || $ext == "jpeg" || $ext == "png") {
             $typeMedia = 'image';
             return $typeMedia;
         }
