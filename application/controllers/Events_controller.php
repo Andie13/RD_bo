@@ -56,7 +56,7 @@ class Events_controller extends CI_Controller {
     public function addEvent() {
 
 
-        
+
         //get input values
         $nom = $this->input->post('nom');
         $ville = $this->input->post('ville');
@@ -69,7 +69,7 @@ class Events_controller extends CI_Controller {
         $ambassadeursID = $this->input->post('amb');
 
 
-	$userModel = new Users_model();
+        $userModel = new Users_model();
 
 
         //récupération de l'id de la ville
@@ -78,10 +78,10 @@ class Events_controller extends CI_Controller {
         $villeModel = new Villes_model();
         $idVille = $villeModel->getVilleByNameAndCp($theVille, $theCp);
 
-	//traitement de la date
+        //traitement de la date
         $date = date('Y-m-d', strtotime($date));
 
-	//vérificaion si l'utilisateur est un ambassadeur
+        //vérificaion si l'utilisateur est un ambassadeur
         $idUser = $this->session->id_user;
         if ($this->session->permission == 2) {
             $isAmbassador = TRUE;
@@ -95,21 +95,21 @@ class Events_controller extends CI_Controller {
         $eventId = $eventModel->insertNewEvent(
                 $nom, $date, $heure, $idVille->id_ville, $nbPlaces, $age, $presta, $prix, $idUser, $isAmbassador);
 
-        
+
 
         //si l'événement a bien été créé
         if (!$eventId == FALSE) {
 
 
-	//selon specs, un event peut avoir plusieurs ambassadeurs.
-        //on va donc inserrer dans la table event_ambassadors tous les ambassadeurs de l'event.
+            //selon specs, un event peut avoir plusieurs ambassadeurs.
+            //on va donc inserrer dans la table event_ambassadors tous les ambassadeurs de l'event.
             foreach ($ambassadeursID as $ai) {
                 if ($ai > 0) {
 
                     $res = $eventModel->AddAmbassyToEvent($ai, $eventId);
                     if ($res == FALSE) {
-			//erreur
-			$this->session->set_flashdata('err', "Un problème est survenu, nous n\'avons pas pu entrer tous les ambassadeurs.");
+                        //erreur
+                        $this->session->set_flashdata('err', "Un problème est survenu, nous n\'avons pas pu entrer tous les ambassadeurs.");
                         redirect('Dashboard_controller');
                     }
                 }
@@ -118,11 +118,11 @@ class Events_controller extends CI_Controller {
 
             //vérifie qu'un média ai été choisi
             if ($_FILES['logo'] != null) {
-		
+
                 $media = $_FILES['logo'];
-		   
+
                 $idMedia = $this->upload($media);
-               
+
 
                 if ($idMedia != NULL) {
                     $this->addMediaToEvent($eventId, $idMedia);
@@ -130,28 +130,23 @@ class Events_controller extends CI_Controller {
                     //erreur
                     redirect('Dashboard_controller');
                 }
-                }
+            }
         }
     }
 
     public function addMediaToEvent($idEvent, $idMedia) {
-	echo $idEvent;
-	    echo $idMedia;
+        echo $idEvent;
+        echo $idMedia;
         if ($idEvent != null && $idMedia != null) {
 
-           // $eventModel = new Events_model();
-           
-
+            // $eventModel = new Events_model();
             //if( $eventModel->addMediaToEvent($idEvent, $idMedia)){
-                //success
-                //echo 'OK';
-                // redirect('Dashboard_controller');
-        }else{
+            //success
+            //echo 'OK';
+            // redirect('Dashboard_controller');
+        } else {
             //error
-            
         }
-            }
-           
     }
 
     public function upload($media) {
@@ -192,7 +187,6 @@ class Events_controller extends CI_Controller {
 
                     return NULL;
                 }
-          
             } else {
 
                 return NULL;
@@ -222,7 +216,7 @@ class Events_controller extends CI_Controller {
         $eventId = $this->input->get('id');
         $eventModel = new Events_model();
         $event = $eventModel->getEventDetailsById($eventId);
-    	$nbresaFromEvent = $eventModel->getNbResaByEventId($eventId);
+        $nbresaFromEvent = $eventModel->getNbResaByEventId($eventId);
         $resaDispo = $event->nb_places_event - $nbresaFromEvent;
         $villeModel = new Villes_model();
         $ville = $villeModel->getNomVilleFromId($event->id_ville);
@@ -316,8 +310,8 @@ class Events_controller extends CI_Controller {
             "commentaires" => $comments,
             "amb" => $amb,
             "ambass" => $ambass,
-	    "permission" => $this->session->permission,
-            "places_restantes" =>$resaDispo
+            "permission" => $this->session->permission,
+            "places_restantes" => $resaDispo
         );
 
 
