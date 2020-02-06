@@ -113,14 +113,14 @@ class Events_controller extends CI_Controller {
                        // redirect('Dashboard_controller');
                    // }
                // }
-            }//
+          //  }//
 
 
             //vérifie qu'un média ai été choisi
             if ($_FILES['logo'] != null) {
 		
                 $media = $_FILES['logo'];
-		    var_dump($media):
+		    var_dump($media);
                // $idMedia = $this->upload($media);
 
                 //if ($idMedia != NULL) {
