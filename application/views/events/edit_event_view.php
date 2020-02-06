@@ -120,6 +120,8 @@ if (isset($userId)) {
                                     echo date_format(new DateTime($heure), "H")
                                     . ' h ' . date_format(new DateTime($heure), 'i')
                                     ?> </h2> <br>
+				<h2>Il reste <?php echo $places_restantes?> places sur <?php echo$places ?></h2>
+				<br>
                                 <h2><?php echo $statut ?> </h2> <br>
 
                             </div>
