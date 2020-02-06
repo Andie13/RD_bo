@@ -56,7 +56,7 @@ class Events_controller extends CI_Controller {
     public function addEvent() {
 
 
-        //get input values
+        
         //get input values
         $nom = $this->input->post('nom');
         $ville = $this->input->post('ville');
@@ -69,6 +69,7 @@ class Events_controller extends CI_Controller {
         $ambassadeursID = $this->input->post('amb');
 
 
+	$userModel = new Users_model();
 
 
         //récupération de l'id de la ville
@@ -77,8 +78,10 @@ class Events_controller extends CI_Controller {
         $villeModel = new Villes_model();
         $idVille = $villeModel->getVilleByNameAndCp($theVille, $theCp);
 
+	//traitement de la date
         $date = date('Y-m-d', strtotime($date));
 
+	//vérificaion si l'utilisateur est un ambassadeur
         $idUser = $this->session->id_user;
         if ($this->session->permission == 2) {
             $isAmbassador = TRUE;
@@ -88,42 +91,45 @@ class Events_controller extends CI_Controller {
 
 
         //insertion du vouvel event en DB et récupération de l'id de ce dernier.
-        $eventModel = new Events_model();
-        $eventId = $eventModel->insertNewEvent(
-                $nom, $date, $heure, $idVille->id_ville, $nbPlaces, $age, $presta, $prix, $idUser, $isAmbassador);
+        //$eventModel = new Events_model();
+        //$eventId = $eventModel->insertNewEvent(
+                //$nom, $date, $heure, $idVille->id_ville, $nbPlaces, $age, $presta, $prix, $idUser, $isAmbassador);
 
-        $userModel = new Users_model();
+        
 
         //si l'événement a bien été créé
-        if (!$eventId == FALSE) {
+        //if (!$eventId == FALSE) {
 
 
+	//selon specs, un event peut avoir plusieurs ambassadeurs.
+        //on va donc inserrer dans la table event_ambassadors tous les ambassadeurs de l'event.
+           // foreach ($ambassadeursID as $ai) {
+               // if ($ai > 0) {
 
-            foreach ($ambassadeursID as $ai) {
-                if ($ai > 0) {
-
-                    $res = $eventModel->AddAmbassyToEvent($ai, $eventId);
-                    if ($res == FALSE) {
-//erreur
-                        redirect('Dashboard_controller');
-                    }
-                }
-            }
+                   // $res = $eventModel->AddAmbassyToEvent($ai, $eventId);
+                   // if ($res == FALSE) {
+			//erreur
+			//$this->session->set_flashdata('err', "Un problème est survenu, nous n\'avons pas pu entrer tous les ambassadeurs.");
+                       // redirect('Dashboard_controller');
+                   // }
+               // }
+            }//
 
 
             //vérifie qu'un média ai été choisi
             if ($_FILES['logo'] != null) {
-
+		
                 $media = $_FILES['logo'];
-                $idMedia = $this->upload($media);
+		    var_dump($media):
+               // $idMedia = $this->upload($media);
 
-                if ($idMedia != NULL) {
-                    $this->addMediaToEvent($eventId, $idMedia);
-                } else {
+                //if ($idMedia != NULL) {
+                   // $this->addMediaToEvent($eventId, $idMedia);
+                //} else {
                     //erreur
-                    redirect('Dashboard_controller');
-                }
-            }
+                    //redirect('Dashboard_controller');
+                //}
+            //}
         }
     }
 
