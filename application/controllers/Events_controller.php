@@ -146,7 +146,7 @@ class Events_controller extends CI_Controller {
                 //success
                 //echo 'OK';
                 // redirect('Dashboard_controller');
-       / }else{
+        }else{
             //error
             
         }
