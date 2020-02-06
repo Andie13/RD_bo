@@ -122,7 +122,7 @@ class Events_controller extends CI_Controller {
                 $media = $_FILES['logo'];
 		   
                 $idMedia = $this->upload($media);
-                var_dump($idMedia);
+               
 
                 if ($idMedia != NULL) {
                     $this->addMediaToEvent($eventId, $idMedia);
