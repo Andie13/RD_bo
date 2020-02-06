@@ -91,45 +91,46 @@ class Events_controller extends CI_Controller {
 
 
         //insertion du vouvel event en DB et récupération de l'id de ce dernier.
-        //$eventModel = new Events_model();
-        //$eventId = $eventModel->insertNewEvent(
-                //$nom, $date, $heure, $idVille->id_ville, $nbPlaces, $age, $presta, $prix, $idUser, $isAmbassador);
+        $eventModel = new Events_model();
+        $eventId = $eventModel->insertNewEvent(
+                $nom, $date, $heure, $idVille->id_ville, $nbPlaces, $age, $presta, $prix, $idUser, $isAmbassador);
 
         
 
         //si l'événement a bien été créé
-        //if (!$eventId == FALSE) {
+        if (!$eventId == FALSE) {
 
 
 	//selon specs, un event peut avoir plusieurs ambassadeurs.
         //on va donc inserrer dans la table event_ambassadors tous les ambassadeurs de l'event.
-           // foreach ($ambassadeursID as $ai) {
-               // if ($ai > 0) {
+            foreach ($ambassadeursID as $ai) {
+                if ($ai > 0) {
 
-                   // $res = $eventModel->AddAmbassyToEvent($ai, $eventId);
-                   // if ($res == FALSE) {
+                    $res = $eventModel->AddAmbassyToEvent($ai, $eventId);
+                    if ($res == FALSE) {
 			//erreur
-			//$this->session->set_flashdata('err', "Un problème est survenu, nous n\'avons pas pu entrer tous les ambassadeurs.");
-                       // redirect('Dashboard_controller');
-                   // }
-               // }
-          //  }//
+			$this->session->set_flashdata('err', "Un problème est survenu, nous n\'avons pas pu entrer tous les ambassadeurs.");
+                        redirect('Dashboard_controller');
+                    }
+                }
+            }
 
 
             //vérifie qu'un média ai été choisi
             if ($_FILES['logo'] != null) {
 		
                 $media = $_FILES['logo'];
-		 
+		   
                 $idMedia = $this->upload($media);
                 var_dump($idMedia);
-                //if ($idMedia != NULL) {
-                   // $this->addMediaToEvent($eventId, $idMedia);
-                //} else {
+
+                if ($idMedia != NULL) {
+                    $this->addMediaToEvent($eventId, $idMedia);
+                } else {
                     //erreur
-                    //redirect('Dashboard_controller');
-                //}
-            //}
+                    redirect('Dashboard_controller');
+                }
+                }
         }
     }
 
@@ -142,7 +143,8 @@ class Events_controller extends CI_Controller {
 
             if( $eventModel->addMediaToEvent($idEvent, $idMedia)){
                 //success
-                 redirect('Dashboard_controller');
+                echo 'OK';
+                // redirect('Dashboard_controller');
         }else{
             //error
             
