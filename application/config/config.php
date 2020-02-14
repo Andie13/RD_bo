@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //$config['base_url'] = 'http://Realdating.bo';
-$config['base_url'] = 'https://back.realdate.fr/';
+$config['base_url'] = 'https://back.dev.realdate.fr/';
 /*
 |--------------------------------------------------------------------------
 | Index File
