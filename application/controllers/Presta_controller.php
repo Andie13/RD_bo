@@ -26,7 +26,9 @@ class Presta_controller extends CI_Controller {
 
             if ($prestss) {
                 $datas['prestas'] = $prestss;
-            }
+            }else{
+				$datas['prestas'] = 0;
+			}
             $this->load->view('layout/sidebar');
             $this->load->view('presta/presta_view', $datas);
         } else {
