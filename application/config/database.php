@@ -75,11 +75,33 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-    'dsn' => '',
-    'hostname' => 'lc431943-003.dbaas.ovh.net',
-    'username' => 'realdate-admin',
-    'password' => 'Amaris2019',
-    'database' => 'realdate',
+   // 'dsn' => '',
+   // 'hostname' => 'lc431943-003.dbaas.ovh.net',
+   // 'username' => 'realdate-admin',
+   // 'password' => 'Amaris2019',
+   // 'database' => 'realdate',
+	'dsn'	=> '',
+	//'hostname' => 'http://realdate.amaris.ovh',
+	
+	/****DEV OLD***/
+	//'username' => 'realdate',
+	//'password' => 'realdate',
+	//'database' => 'realdating_db',
+	
+	/****DEV ***/
+	'hostname' => 'localhost',
+	'username' => 'admin',
+	'password' => 'password',
+	'database' => 'realdate_dev_db',
+	
+	
+	
+	
+	/****PROD ***/
+	//'hostname' => 'localhost',
+	//'username' => 'db_admin',
+	//'password' => 'db_admin_pwd_1',
+	//'database' => 'realdate_prod_db',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => FALSE,
