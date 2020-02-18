@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+setlocale(LC_TIME, "fr_FR");
 if (isset($userId)) {
     
 } else {
@@ -113,10 +113,9 @@ if (isset($userId)) {
                             <div class="controls">
                                 <h2><?php echo $nom; ?></h2> <br>
                                 <h2>A <?php echo $ville->nom_commune; ?></h2> <br>
-                                <h2><?php echo $date;?> </h2> <br>
+                                <h2><?php echo utf8_encode(strftime(" %d %B %Y", strtotime( $date))) ;?> </h2> <br>
                                 <h2><?php
-                                    echo date_format(new DateTime($heure), "H")
-                                    . ' h ' . date_format(new DateTime($heure), 'i')
+                                    echo $heure;
                                     ?> </h2> <br>
 				<h2>Il reste <?php echo $places_restantes?> places sur <?php echo$places ?></h2>
 				<br>
