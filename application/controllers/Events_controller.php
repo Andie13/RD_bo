@@ -261,7 +261,7 @@ class Events_controller extends CI_Controller {
 
             $presta = $prestaModel->getAllPrestaById($event->id_presta_event);
         } else {
-            $presta = "";
+            $presta = "A définir";
         }
 
         //on récupère la liste de tous les prestataires environnants
