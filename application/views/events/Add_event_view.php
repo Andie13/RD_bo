@@ -56,7 +56,8 @@
                                             <input type="datetime-local" name="date" value="15-08-2019" class="form-control datepicker col-md-4" data-format="DD-MM-YYYY" required>
                                         </div>
                                         <div>
-						
+						<br>
+						<br>
                                         </div <label for="f_nom_arret">Heure : </label>					
                                         <select name="heure">
                                             <option value="h">heure</option>	
