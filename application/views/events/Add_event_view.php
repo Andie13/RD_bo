@@ -216,7 +216,7 @@ showMonthAfterYear: false,
 yearSuffix: '',
 minDate: 0,
 maxDate: '+12M +0D',
-numberOfMonths: 2,
+numberOfMonths: 1,
 showButtonPanel: true
 };
 $.datepicker.setDefaults($.datepicker.regional['fr']);
