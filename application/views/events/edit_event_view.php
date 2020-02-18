@@ -400,13 +400,15 @@ if (isset($userId)) {
                             <input style="visibility: hidden" name="id_event" value="<?php echo $event->id_event; ?>">
 
                             <select class="form-control" name="presta">
-                                <option value="<?php echo!empty($presta) ? $event->id_presta_event : ''; ?>" checked> <?php echo!empty($presta) ? $presta->nom_presta : ''; ?></option>
+                                <option value="<?php echo!empty($presta) ? $event->id_presta_event : 'À définir...'; ?>" checked> <?php echo!empty($presta) ? $presta->nom_presta : ''; ?></option>
                                 <?php
                                 foreach ($prestasList as $p) {
                                     echo '<option value="' . $p->id_presta . '">' . $p->nom_presta . '</option>';
                                 }
                                 ?>
+                                <option value="0">À Définir plus tard</option>
 
+															
                             </select>
                             <button type="submit" class="btn btn-primary btn-icon right15 btn-val">
                                 <i class="fa a fa-plus-square-o" style="color:white"></i>
