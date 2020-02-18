@@ -88,14 +88,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                             $ville = $villeModel->getNomVilleFromId($row->id_ville);
                                             $statut = $statusModel->getStatusById($row->id_statut_event);
-
+					$date = <?php setlocale(LC_TIME, "fr_FR"); echo utf8_encode(strftime(" %d %B %Y", strtotime( $row->date_event )));?>
 
                                             echo '<tr>';
                                             echo '<td>';
                                             echo $row->nom_event;
                                             echo '</td>';
                                             echo '<td>';
-                                            echo $row->date_event;
+                                            echo $date;
                                             echo '</td>';
                                             echo '<td>';
                                             echo $row->heure_event;
