@@ -62,6 +62,7 @@ class Events_controller extends CI_Controller {
         $ville = $this->input->post('ville');
         $date = $this->input->post('date');
         $heure = $this->input->post('heure');
+		$minutes = $this->input->post('minutes');
         $nbPlaces = $this->input->post('nb_places');
         $age = $this->input->post('age');
         $presta = $this->input->post('presta');
@@ -69,6 +70,7 @@ class Events_controller extends CI_Controller {
         $ambassadeursID = $this->input->post('amb');
 
 
+		$heure = $heure.' h '.$minutes; 
         $userModel = new Users_model();
 
 
