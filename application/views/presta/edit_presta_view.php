@@ -15,13 +15,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="pull-right hidden-xs">
                         <ol class="breadcrumb">
                             <li>
-                                <a href="index.html"><i class="fa fa-home"></i>Home</a>
+                                <a href="<?php echo base_url(); ?>Dashboard_controller""><i class="fa fa-home"></i>Home</a>
                             </li>
-                            <li>
-                                <a href="mus-playlists.html">Playlists</a>
-                            </li>
+                         
                             <li class="active">
                                 <strong>Edit Playlist</strong>
+                            </li>
+											   <li>
+                                <a href="<?php echo base_url(); ?>login_controller/logout"><i class="fa fa-lock"></i>Déconnexion</a>
                             </li>
                         </ol>
                     </div>
