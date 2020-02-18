@@ -21,11 +21,9 @@ if (isset($userId)) {
                     <div class="pull-right hidden-xs">
                         <ol class="breadcrumb">
                             <li>
-                                <a href="index.html"><i class="fa fa-home"></i>Home</a>
+                                <a href="<?php echo base_url(); ?>Dashboard_controller""><i class="fa fa-home"></i>Home</a>
                             </li>
-                            <li>
-                                <a href="mus-playlists.html">Events</a>
-                            </li>
+                           
                             <li class="active">
                                 <strong>Edit Event</strong>
                             </li>
