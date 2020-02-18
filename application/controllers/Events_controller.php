@@ -271,13 +271,13 @@ class Events_controller extends CI_Controller {
                 $statut = 'Actif';
                 break;
             case 2:
-                $statut = 'annulé';
+                $statut = 'Annulée';
                 break;
             case 3:
-                $statut = 'complet';
+                $statut = 'Complet';
                 break;
             case 5:
-                $statut = 'En ettente de prestataire';
+                $statut = 'En attente de prestataire';
                 break;
         }
         $statutsModel = new Statuts_model();
