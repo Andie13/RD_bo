@@ -113,7 +113,7 @@ if (isset($userId)) {
                             <div class="controls">
                                 <h2><?php echo $nom; ?></h2> <br>
                                 <h2>A <?php echo $ville->nom_commune; ?></h2> <br>
-                                <h2><?php echo date_format(new DateTime($date), "d m Y") ?> </h2> <br>
+                                <h2><?php echo $date) ?> </h2> <br>
                                 <h2><?php
                                     echo date_format(new DateTime($heure), "H")
                                     . ' h ' . date_format(new DateTime($heure), 'i')
