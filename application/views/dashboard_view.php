@@ -82,13 +82,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     $eventModel = new Events_model();
                                     $villeModel = new Villes_model();
                                     $statusModel = new Statuts_model();
+					setlocale(LC_TIME, "fr_FR");
 
                                     if ($rows > 0) {
                                         foreach ($rows as $row) {
 
                                             $ville = $villeModel->getNomVilleFromId($row->id_ville);
                                             $statut = $statusModel->getStatusById($row->id_statut_event);
-					$date = setlocale(LC_TIME, "fr_FR"); echo utf8_encode(strftime(" %d %B %Y", strtotime( $row->date_event )));
+					$date = utf8_encode(strftime(" %d %B %Y", strtotime( $row->date_event )));
 
                                             echo '<tr>';
                                             echo '<td>';
