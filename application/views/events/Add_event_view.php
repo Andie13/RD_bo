@@ -52,12 +52,32 @@
                                 <div class="form-group">
                                     <label class="form-label" for="field-1">Date & Heure</label>
                                     <div class="row">
-                                        <div class="col-xs-8">
+                                        <div>
                                             <input type="datetime-local" name="date" value="15-08-2019" class="form-control datepicker col-md-4" data-format="DD-MM-YYYY" required>
                                         </div>
-                                        <div class="col-xs-4" style='padding-left:0px;'>
-                                            <input type="text" class="form-control timepicker col-md-4" name="heure" data-template="dropdown" data-show-seconds="true" data-default-time="09:45 PM" data-show-meridian="true" data-minute-step="5" data-second-step="5" required>
-                                        </div>
+                                        <div>
+						
+                                        </div <label for="f_nom_arret">Heure : </label>					
+                                        <select name="heure">
+                                            <option value="h">heure</option>	
+                                            <?php
+                                            for ($heure = 00; $heure <= 23; $heure++):
+                                                $hour = sprintf("%02d", $heure);
+                                                ?>
+                                                <option value="<?php echo $hour ?>"><?= $hour; ?></option>
+                                            <?php endfor; ?>							
+                                        </select>
+                                        <select name="minutes">
+                                            <option value="min">minutes</option>	
+                                            <?php
+                                            $minutes = 00;
+                                            while ($minutes <= 59) {
+                                                $min = sprintf("%02d", $minutes);
+                                                $minutes = $minutes + 15;
+                                                ?>
+                                                <option value="<?= $min ?>"><?= $min; ?></option>
+                                            <?php } ?>							
+                                        </select>
 					   
                                     </div>
                                 </div>
