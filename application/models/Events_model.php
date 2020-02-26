@@ -104,8 +104,8 @@ class Events_model extends CI_Model {
 
 		 
 
-        $query = $this->db->query("SELECT COUNT(*) AS numrows FROM " . self::TABLE_RESA . "
-               WHERE " . self::ID_EVENT . "='$eventId'.AND ". self::STATUS_RESA."=4");
+      $query = $this->db->query("SELECT COUNT(*) AS numrows FROM " . self::TABLE_RESA . "
+               WHERE " . self::ID_EVENT . "='$eventId' AND ". self::STATUS_RESA."=4");
 
 		
 
