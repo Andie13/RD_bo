@@ -102,6 +102,7 @@ class Update_event_controller extends CI_Controller {
         $idPresta = $this->input->post('presta');
 
         $eventModel = new Events_model();
+	   
         $res = $eventModel->updatePrestaEvent($idEvent, $idPresta);
 
         if ($res) {
@@ -110,8 +111,9 @@ class Update_event_controller extends CI_Controller {
             redirect("Events_controller/displayEventDetails?id=$idEvent");
         } else {
 
-            $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
-            redirect("Events_controller/displayEventDetails?id=$idEvent");
+		 var_dump($res);
+            //$this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
+            //redirect("Events_controller/displayEventDetails?id=$idEvent");
         }
     }
 
