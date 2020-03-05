@@ -111,9 +111,9 @@ class Update_event_controller extends CI_Controller {
             redirect("Events_controller/displayEventDetails?id=$idEvent");
         } else {
 
-		 var_dump($res);
-            //$this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
-            //redirect("Events_controller/displayEventDetails?id=$idEvent");
+		 
+            $this->session->set_flashdata('err', "Nous n'avons pu mettre à jour vos informations.");
+            redirect("Events_controller/displayEventDetails?id=$idEvent");
         }
     }
 
