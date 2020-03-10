@@ -157,6 +157,17 @@ class Events_model extends CI_Model {
 
         return $this->db->get()->result();
     }
+	
+	  public function getAllFromTypePaymt() {
+        $this->db->select()
+                ->from(self::TABLE_TYPE_PAIEMENTS);
+        return $this->db->get()->result();
+    }
+    public function getAllFromPromo() {
+         $this->db->select()
+                ->from(self::TABLE_PROMOS);
+        return $this->db->get()->result();
+    }
 
     /*     * ************************************
       INSERT REQUESTS
