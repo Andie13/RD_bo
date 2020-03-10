@@ -15,7 +15,7 @@ class Events_model extends CI_Model {
     const TABLE_COMMENTAIRES_EVENT = 'commentaires_event';
     const TABLE_AMBASSADEUR_EVENT = 'ambassadeurs_event';
     const TABLE_TYPE_PAIEMENTS = 'type_paiments';
-    const TABLE_PROMOS = 'promo';
+    const TABLE_PROMOS = 'promos';
     //concerns user
     const ID_USER = 'id_user';
     const ID_TYPE_PAYMT = 'id_type_paymt';
