@@ -70,6 +70,7 @@
                                     <div class="controls">
                                         <select name="promo">
                                             <?php
+											var_dump(promo);
                                             foreach ($promo as $p) {
                                                 echo '<option  value="' . $p->calcul_promo . '">' . $p->promo .  '</option>';
                                             }
