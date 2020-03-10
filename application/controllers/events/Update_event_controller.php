@@ -140,7 +140,7 @@ class Update_event_controller extends CI_Controller {
         $data['event'] = $event;
         $data['ville'] = $ville;
         $data['users'] = $users;
-        $data['pomo'] = $promos;
+        $data['promo'] = $promos;
         $data['typePayment'] = $typePayment;
 
 
