@@ -346,6 +346,12 @@ if (isset($userId)) {
                         </button> 
                     </form>
                 </div>
+				<button  class="btn btn-primary btn-icon right15 btn-val">
+                    <i class="fa a fa-plus-square-o" style="color:white"></i>
+                    <a style="color:white" href="<?php echo base_url() ?>events/update_event_controller/toAddManualResa?idEvent=<?php echo $event->id_event ?>">
+                        Ajouter une réservation 
+                    </a>
+                </button> 
 
 
             </div>
