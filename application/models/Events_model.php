@@ -212,7 +212,7 @@ class Events_model extends CI_Model {
             self::DATE_RESA => $date,
             self::REF_RESA => $ref,
             self::STATUS_RESA =>4,
-            self::ID_PROMO_EVENT = 'id_promo' =>$promo,
+            self::ID_PROMO_EVENT =>$promo,
             self::ID_TYPE_PAYMT =>$tpePay,
             self::PRIX_RESA =>$_price
         ];
