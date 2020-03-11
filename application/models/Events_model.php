@@ -20,7 +20,7 @@ class Events_model extends CI_Model {
     const ID_USER = 'id_user';
     const ID_TYPE_PAYMT = 'id_type_paymt';
     const ID_PROMO = 'id_promos';
-    const ID_PROMO_EVENT = 'id_promo'
+    const ID_PROMO_EVENT = 'id_promo';
     
     //for bookings
     const REF_RESA = 'ref_resa';
