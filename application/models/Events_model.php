@@ -14,12 +14,19 @@ class Events_model extends CI_Model {
     const TABLE_STATUT_EVENT = 'statut_event';
     const TABLE_COMMENTAIRES_EVENT = 'commentaires_event';
     const TABLE_AMBASSADEUR_EVENT = 'ambassadeurs_event';
+    const TABLE_TYPE_PAIEMENTS = 'type_paiments';
+    const TABLE_PROMOS = 'promo';
     //concerns user
     const ID_USER = 'id_user';
+    const ID_TYPE_PAYMT = 'id_type_paymt';
+    const ID_PROMO = 'id_promo';
+    
+    
     //for bookings
     const REF_RESA = 'ref_resa';
     const STATUS_RESA = 'status_resa';
     const DATE_RESA = 'date_resa';
+    const PRIX_RESA = 'prix';
     //events
     const ID_EVENT = 'id_event';
     const DATE_EVENT = 'date_event';
@@ -41,7 +48,6 @@ class Events_model extends CI_Model {
     conSt COMMENTAIRE = 'commentaire';
     conSt MODIF = 'modif_statut';
     const CREATED_EVENT = 'created_event';
-
     /*     * ***********************************
       READ REQUESTS
      * ************************************ */
@@ -195,7 +201,7 @@ class Events_model extends CI_Model {
         return $insert ? true : false;
     }
 
-    public function insertNewReservation($idUser, $idEvent) {
+ public function insertNewReservation($idUser, $idEvent, $tpePay,$promo,$_price) {
 
         $date = date('Y-m-d H:i:s');
         $ref = 'RD-' . $date;
@@ -204,11 +210,15 @@ class Events_model extends CI_Model {
             self::ID_USER => $idUser,
             self::ID_EVENT => $idEvent,
             self::DATE_RESA => $date,
-            self::REF_RESA => $ref
+            self::REF_RESA => $ref,
+            self::STATUS_RESA =>4,
+            self::ID_PROMO =>$promo,
+            self::ID_TYPE_PAYMT =>$tpePay,
+            self::PRIX_RESA =>$_price
         ];
 
         $this->db->insert(self::TABLE_RESA, $data);
-        $idUser = $this->session('id_user');
+        //$idUser = $this->session('id_user');
 
 
         if ($this->db->affected_rows() > 0) {
