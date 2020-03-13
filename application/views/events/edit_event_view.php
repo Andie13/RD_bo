@@ -234,6 +234,7 @@ if (isset($userId)) {
                                         <th>ref</th>
                                         <th>statut résa</th>
                                         <th>nom_user</th>
+					<th>genre</th>
                                          <th>action</th>
                                        
 
@@ -245,6 +246,7 @@ if (isset($userId)) {
                                         <th>ref</th>
                                         <th>statut résa</th>
                                         <th>nom_user</th>
+					<th>genre</th>
                                         <th>action</th>
 
                                     </tr>
