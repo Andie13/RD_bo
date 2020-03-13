@@ -278,10 +278,17 @@ if (isset($userId)) {
                                             echo '</td>';
                                             
                                             
-                                            echo '<td>';
-                                             echo $user->nom_user;
-					
-                                            echo '</td>';
+                                           echo '<td>';
+                                        echo $user->nom_user;
+                                        echo '</td>';
+                                        
+                                        echo '<td>';
+                                        if($user->genre_user == 1){
+                                            echo 'femme';
+                                        }else{
+                                            echo 'homme';
+                                        }
+                                        echo '</td>';
                                            
                                            
                                            
