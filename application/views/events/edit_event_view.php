@@ -279,7 +279,11 @@ if (isset($userId)) {
                                             echo '</td>';
                                             
                                             
+<<<<<<< .merge_file_gQaHsf
                                             echo '<td>';
+=======
+                                           echo '<td>';
+>>>>>>> .merge_file_j5jAvc
                                         echo $user->nom_user;
                                         echo '</td>';
                                         
@@ -290,6 +294,10 @@ if (isset($userId)) {
                                             echo 'homme';
                                         }
                                         echo '</td>';
+<<<<<<< .merge_file_gQaHsf
+=======
+                                           
+>>>>>>> .merge_file_j5jAvc
                                            
                                            
 
