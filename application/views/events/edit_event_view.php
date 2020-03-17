@@ -99,12 +99,13 @@ if (isset($userId)) {
 
                         <h2>Détails de la soirée: </h2>
                        <div class="uprofile-image">
-                            <?php if($media!=''){
-     echo ' <img src="'.$media->path_media.'/'.$media->nom_media.'" class="img-responsive">';
-                            }else{
-                                echo '<img src="<?php echo base_url() ?>uploads/event.jpg" class="img-responsive">';
+                           <?php
+                            if ($media != '') {
+                                echo ' <img src="' . $media->path_media . '/' . $media->nom_media . '" class="img-responsive">';
+                            } else {
+                                echo '<img src="'. base_url().'uploads/event.jpg" class="img-responsive">';
                             }
-?>
+                            ?>
                             
                         </div>
                         <div class="form-group">
